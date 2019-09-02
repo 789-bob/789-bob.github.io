@@ -201,16 +201,13 @@ var _hmt = _hmt || [];
 <li>主题不支持IE6，7，8。以后也不会</li>
 </ol>
 <a id="more"></a>
-
 <p>##一、使用</p>
 <p>####<strong>1. 安装</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-
 <p>####<strong>2. 配置</strong></p>
 <p>修改hexo根目录下的 <code>_config.yml</code> ： <code>theme: yilia</code></p>
 <p>####<strong>3. 更新</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> themes/yilia</span><br><span class="line">git pull</span><br></pre></td></tr></table></figure>
-
 <p>##二、外观</p>
 <p>####<strong>宽屏</strong><br><img src="http://littendomo.sinaapp.com/yilia/yilia-pc1.png" alt="宽屏">        </p>
 <p>####<strong>宽屏文字</strong><br><img src="http://littendomo.sinaapp.com/yilia/yilia-pc2.png" alt="宽屏文字">   </p>
@@ -323,7 +320,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2014/08/31/hexo-theme-yilia/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3aS27DMAxFUe9/0+60QGrjPtJJKupqVDROpOMBwY+OA6/zZaX/J9/6/enxjiVDhoxlGeften3makv+DNmdn02GDBn7MK4i2P32VwDC4wH9/mwyZMiQQdK1E6yr5+/3kiFDhoynGOR3SLr55YArQ4aMf88gxeR90CStNAJ4ey0uQ4aMBRm86/75v98y35AhQ8ZSjDNcPPjWCuDiqWTIkDGakRaonRY/SStr55EhQ8ZsRq1MJcflQ81OqRzf5pAhQ8ayjNrokQdfzk6L2yDDlSFDxuKM+7SsM3RMB5/8NV2mhjJkyNiAQZLC2vCg9spaVbgMGTIGMXghysNl2vTnvxB3+GTIkDGIQVrzpE3WKVDTFPOPWlyGDBnjGPzqQ3+cSWJjrfEnQ4aM2Yw0ResMCWqvoFXEypAhYwQjHS4+2+IvXq24OpUMGTKGMnjA7RS3tUSTf1eGDBmzGTz8kYZ+rT3HxwzxHFWGDBkjGLVrWLUmWr9VF+S2MmTIGMTgQ8dORK+VsiToy5AhYzcG34wH3/7AMngFMmTI2IbBL291GmedaxYyZMiQUUvy0sSRN+CC3E+GDBlDGWe4+CWJ2vAgfVlBzJYhQ8ayjHTAWZyOhuPMNEmVIUPGDow0yKbB8TNgGTJk7MAgl7TSMpUnfw8MRGXIkCEDB9z0ogbZvXgtTIYMGTLIT5fSx/SqhwwZMvZhpKGzFnD5UDNNN2XIkDGbwUvHIPzhsWUadltNPRkyZKzH+AF6mWC+FEBDWwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -401,6 +398,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -542,11 +555,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,10 +583,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -583,6 +592,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -618,11 +631,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

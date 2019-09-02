@@ -190,8 +190,7 @@ var _hmt = _hmt || [];
         <blockquote>
 <p>请记住，每个尽责的设计师都是处女座…</p>
 </blockquote>
-<p>这里…没有黑处女座的意思，只是想借题发挥，并由衷的跪倒在强大的“像素眼”之下。</p>
-<a id="more"></a>
+<p>这里…没有黑处女座的意思，只是想借题发挥，并由衷的跪倒在强大的“像素眼”之下。<br><a id="more"></a></p>
 <p>###一、你是我的眼</p>
 <p>什么是像素眼？<br>就是那些个神奇的存在，他们用余光瞄了你一眼，然后跟你说：我发现啊，你左边眉毛比右边眉毛高了1像素，麻烦你调整下…</p>
 <p>在腾讯，我身边的许多设计同学都有这样的眼睛。他们会把细节做到极致，也会因为频繁的修改，把你开发的心情搞得一团糟。但你得承认，他们是对的。</p>
@@ -204,12 +203,8 @@ var _hmt = _hmt || [];
 </ul>
 <p>这样父元素的border其实被缩放了，无疑更细。</p>
 <p>###二、通用方案</p>
-<p>用一个css类去为block元素添加更细的border</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  &amp;:before, &amp;:after&#123;</span><br><span class="line">    <span class="selector-tag">border-top</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c8c7cc</span>;</span><br><span class="line">    content: ' ';</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">    <span class="selector-tag">width</span>: 100%;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">left</span>: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>适应移动设备：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (-webkit-min-device-pixel-ratio:<span class="number">1.5</span>), (min-device-pixel-ratio: <span class="number">1.5</span>)&#123;</span><br><span class="line">  <span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">    &amp;::after, &amp;::before&#123;</span><br><span class="line">      <span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.7</span>);</span><br><span class="line">      <span class="selector-tag">-webkit-transform-origin</span>: 0 0;</span><br><span class="line">      <span class="selector-tag">transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.7</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">      <span class="attribute">-webkit-transform-origin</span>: left bottom;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (-webkit-min-device-pixel-ratio:<span class="number">2</span>), (min-device-pixel-ratio: <span class="number">2</span>)&#123;</span><br><span class="line">  <span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">    &amp;::after, &amp;::before&#123;</span><br><span class="line">      <span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.5</span>);</span><br><span class="line">      <span class="selector-tag">transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>用一个css类去为block元素添加更细的border<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  &amp;:before, &amp;:after&#123;</span><br><span class="line">    <span class="selector-tag">border-top</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#c8c7cc</span>;</span><br><span class="line">    content: ' ';</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">    <span class="selector-tag">width</span>: 100%;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">left</span>: 0;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:before</span>&#123;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>适应移动设备：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (-webkit-min-device-pixel-ratio:<span class="number">1.5</span>), (min-device-pixel-ratio: <span class="number">1.5</span>)&#123;</span><br><span class="line">  <span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">    &amp;::after, &amp;::before&#123;</span><br><span class="line">      <span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.7</span>);</span><br><span class="line">      <span class="selector-tag">-webkit-transform-origin</span>: 0 0;</span><br><span class="line">      <span class="selector-tag">transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.7</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;<span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">      <span class="attribute">-webkit-transform-origin</span>: left bottom;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="keyword">media</span> (-webkit-min-device-pixel-ratio:<span class="number">2</span>), (min-device-pixel-ratio: <span class="number">2</span>)&#123;</span><br><span class="line">  <span class="selector-class">.border-1px</span>&#123;</span><br><span class="line">    &amp;::after, &amp;::before&#123;</span><br><span class="line">      <span class="selector-tag">-webkit-transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.5</span>);</span><br><span class="line">      <span class="selector-tag">transform</span>: <span class="selector-tag">scaleY</span>(<span class="selector-class">.5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>###三、来个对比</p>
 <p>比如，之前我学日语时，自己搞起了个app，这是50音列表界面，可以明显的看出区别：上图是原生方案，下图是…性感方案<br><img src="/assets/blogImg/border1px.jpg" alt="与原生方案对比">      </p>
 <p>源码小demo，注意要在手机上才能看到效果：<a href="/assets/demo/border1px.html">demo</a>。</p>
@@ -318,7 +313,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2014/02/22/thinner-than-1px-border/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3ay26DMBAF0Pz/T6fbVhXo3jGpijmsqgSDTxZTz+P1iq/3t+vok6P7z9f+fsLRMy+4MDAwbst4n14zxvnz83uSvWFgYDyHcfToo3vOw+X52pZxvjcMDAyMnJHcnx8cMTAwMK5l5AfK9fdiYGA8mdEGwXZz+RHw47k4BgbGDRl51f3v//5IfwMDA+NWjHd5Jce1JDTPwuvhrjAwMLZmrBTu2y227cx2+AMDA2NXxmy4IW8SzFLWvFFavx4DA+OGjPXFeWNgNnCWt0UxMDD2ZswGtpKSXFvKX0mYMTAwnsOYjWqtrGp/uKiFgIGBsRGjHaq4KoxelQxHcRoDA2MLRn7kylPNWaGtBfwIuBgYGFsz2pLZLGi2Y2fJezEwMJ7AyAcd8gCaF+baFLc4kmJgYGzNaJuIs9bmerq71NPAwMC4IWNmbZuaszC6NDOCgYGxBSMPlHkBrg2geQHu1f5aGBgYWzDaw9lsqGKWiObHUAwMjOcw2mGvPLnNg+b6PwAMDIxdGSupZnKYS9qTbcszysUxMDC2ZuQhL0lxW3z7ZAwMjCczZmnqrDl6wVoMDIxNGe/yykv5+eBXHnAPn4aBgbE1YyXYtSNcLe8jDU4MDIzbMtZLYMnavCU5DLgYGBgPYORJbLv1du1SKouBgYFRDlusfNt+joGBgZEzZmW79rD48YCLgYHxLxltIto2DPJiXJs2Y2BgPIGRp46zRkI7cpF/joGB8QDGFwnUapgMAUQWAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -396,6 +391,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -537,11 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,10 +576,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -578,6 +585,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +624,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

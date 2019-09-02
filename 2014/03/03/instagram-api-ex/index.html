@@ -188,19 +188,14 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近喜欢上了instagram，分享一下获取照片的经验。</p>
-<a id="more"></a>
+        <p>最近喜欢上了instagram，分享一下获取照片的经验。<br><a id="more"></a></p>
 <p>###一、三“步”曲<br>instagram开放了API，授权遵循Oauth2.0协议。        </p>
 <p>####1、注册client id<br>到<a href="http://instagram.com/developer/clients/manage/" target="_blank" rel="noopener">管理客户端页面</a>，选择“注册新客户端”。<br>这时会提示你填手机号，接着会收到短信验证码。经过验证，就到达了下面的界面：<br><img src="/assets/blogImg/instagram1.jpg" alt="填写信息"><br>按照字面意思填写完毕，client id就注册完毕了。                 </p>
 <p><img src="/assets/blogImg/instagram2.jpg" alt="获得client_id">         </p>
-<p>####2、用client_id去换取token<br>在浏览器中请求：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//i</span>nstagram.com<span class="regexp">/oauth/</span>authorize<span class="regexp">/?client_id=&#123;CLIENT_ID&#125;&amp;redirect_uri=&#123;REDIRECT_URI&#125;&amp;response_type=token</span></span><br></pre></td></tr></table></figure>
-
+<p>####2、用client_id去换取token<br>在浏览器中请求：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//i</span>nstagram.com<span class="regexp">/oauth/</span>authorize<span class="regexp">/?client_id=&#123;CLIENT_ID&#125;&amp;redirect_uri=&#123;REDIRECT_URI&#125;&amp;response_type=token</span></span><br></pre></td></tr></table></figure></p>
 <p>花括号里面的值，对应上一步最终得到的<code>client_id</code>和自己设定的<code>redirect_uri</code>。<br>请求到的是一个授权页面，授权完毕后，则重定向到你的redirect_uri。注意看授权成功后的url，hash部分会附带给你的token。至此，token成功获取。</p>
 <p>####3、用token去调用API</p>
-<p>拿到token，就等于拿到仓库的钥匙了！<br>赶紧试着用token调用api查看自己的图片吧：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>api.instagram.com<span class="regexp">/v1/u</span>sers<span class="regexp">/&#123;USER_ID&#125;/m</span>edia<span class="regexp">/recent/</span>?access_token=&#123;TOKEN&#125;</span><br></pre></td></tr></table></figure>
-
+<p>拿到token，就等于拿到仓库的钥匙了！<br>赶紧试着用token调用api查看自己的图片吧：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//</span>api.instagram.com<span class="regexp">/v1/u</span>sers<span class="regexp">/&#123;USER_ID&#125;/m</span>edia<span class="regexp">/recent/</span>?access_token=&#123;TOKEN&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这时，你会发现似乎…被instagram api坑了一道。user_id是个啥？机智如我，果断填上了自己的用户名。<br>结果错了。</p>
 <p>后来发现有这个的网站：<a href="http://jelled.com/instagram/lookup-user-id" target="_blank" rel="noopener">lookup-user-id</a>，通过此业界良心，成功获取到user_id，摆平了上面的请求。</p>
 <p>###二、参考</p>
@@ -321,7 +316,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2014/03/03/instagram-api-ex/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3a0U7DQAwEQP7/p4vEUyVourbTijpzT5UI4SaVFp+dr6943X7W/ef7lVyT3OH3fU5eGBgYH8u4Ha5Htz7r+mNG/lsYGBhXYOQhe3zlo61Pgjv6ixgYGBjFEjCJVAwMDIx3Bm5yND2OYAwMDIyEMWmQVcvESWPuhLM4BgbGBzJ6g4H3fH75fAMDA+PfM27FlTT950PQ8q4wMDBWM463NSnvXlEaPoljDAyMpYykoTbfdG94mewKAwPjOoz5qLIKOKvExMDAuAIjCdC8ETYfXk4OwBgYGLsZk8Nkr0xMDs95oGNgYFyHUe3SVTfROyRXHwQGBsZWRt786m16XjJGMAwMjKWMvPl17gAyD+sopjEwMFYzqs2seYBWm/7JoAIDA2M3Yz6wzAeTeUOt/MoaBgbGaka1Kd8bPebNu6TQLH8zGBgYKxjziOy9SJG39qKHgoGBsZRRvVESlPnYYFKSPjmFY2BgLGL0mmXVeK2225JWHQYGxnUYhQFh3AhLgrV3n4f7wcDAuAAjKf56L0ZUi8LqI/7jEIuBgbGOkbfvJ8OAyWihUGhiYGAsZdyKa34orUZt4f8GBgbGUkY15iZDzepPqwMGDAyM3YzqK1lnFZHVwC3MNDAwMJYykuCrNtR6jGroY2BgYPTKwYSa3KEwzsTAwMBotdt6pV7z9QsMDIwLMKrDgPyaPLLzrT8MXAwMjKWMeVPsFYPJZoGIgYGxjfEN5e4PLNmJHhsAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -399,6 +394,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -540,11 +551,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -568,10 +579,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -581,6 +588,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,11 +627,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -187,24 +187,22 @@ var _hmt = _hmt || [];
       
         <p>这两天一直在看coffeescript相关的东西，也帮一个朋友搞了个生产者-消费者模型的C语言实现。想到还没用coffeescript真正意义上写过程序，那就尝试做一下吧。</p>
 <p>其实<a href="http://read.douban.com/ebook/198648/" target="_blank" rel="noopener">《CoffeeScript小书》</a>是暑假实习时就买了，一直比较向往着函数式编程却拖延了很久没行动起来。小书只有几十页，本是github上一个开源的项目，我喜欢这种轻巧的文字。语法部分看下来，再看下类与继承，只花了半天的时间，而且心情非常愉悦，然后就可以开始我菜鸟的第一次试飞了。</p>
-<p>生产者-消费者模型没什么好说的了，就是读写共享缓冲区，pv操作控制是否冲突。更多的就是冲着coffeescript来的。下面是一些凌乱但自认为有思考价值的记录，或许后续我会继续写一些coffeescript的学习笔记，再做深入的研究。</p>
-<a id="more"></a>
+<p>生产者-消费者模型没什么好说的了，就是读写共享缓冲区，pv操作控制是否冲突。更多的就是冲着coffeescript来的。下面是一些凌乱但自认为有思考价值的记录，或许后续我会继续写一些coffeescript的学习笔记，再做深入的研究。<br><a id="more"></a></p>
 <p>##<strong>demo，可尝试点击“生产”“消费”按钮</strong></p>
-<iframe src="/assets/demo/coffee_pc_demo/pro-con.html" width="780" height="336" scrolling="no"></iframe>
-##**litten如是想：**
-+ 我一定要学一门，至少一门函数式风格编程语言，没有太深远的想法，就觉得它就是我的菜       
-+ 这个程序是66行的coffeescript代码，最后编译后得到了122行的js代码，说明编程效率提升显著          
-+ 括号，方括号，花括号，还有逗号有时候会多烦人，特别是使用过ExtJs的人，而coffeescript可以没有
-+ 用法简洁的jquery在coffeescript里面会更简洁                   
-+ 关于coffeescript的循环，它不推荐你使用for循环，而是使用“推导”，暴露在底层的循环只有while语法        
-+ 事件绑定时，使用=>可以免去js上下文切换this的麻烦               
-+ coffeescript的数组迭代方法非常的酷，三言两语说不清             
-+ javascript会是下一个JVM吗？              
-+ 站在产品的角度，我认为coffeescript这名字太长了-_-!              
-
-<p>##<strong>附上源码</strong></p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProCon</span></span></span><br><span class="line">	data: </span><br><span class="line">		mutex:<span class="number">1</span></span><br><span class="line">		empty:N</span><br><span class="line">		full:<span class="number">0</span></span><br><span class="line">		front:<span class="number">0</span></span><br><span class="line">		rear:<span class="number">0</span></span><br><span class="line">		buf: []</span><br><span class="line">	init:<span class="function">-&gt;</span></span><br><span class="line">		i = <span class="number">0</span></span><br><span class="line">		<span class="keyword">while</span> i&lt;N</span><br><span class="line">			newDom = $(<span class="string">'&lt;div class="bufBox"&gt;&lt;div class="bufCover"&gt;'</span>+i+<span class="string">'&lt;/div&gt;'</span>+i+<span class="string">'&lt;/div&gt;'</span>)</span><br><span class="line">			$(<span class="string">'#buf'</span>).append(newDom)</span><br><span class="line">			@data.buf.push <span class="string">'e'</span></span><br><span class="line">			i++</span><br><span class="line">		$(<span class="string">'#produce'</span>).click =&gt;</span><br><span class="line">			@producer()</span><br><span class="line">		$(<span class="string">'#consume'</span>).click =&gt;</span><br><span class="line">			@consumer()</span><br><span class="line">	p:<span class="function"><span class="params">(num)</span>-&gt;</span></span><br><span class="line">		<span class="keyword">return</span> --num</span><br><span class="line">	v:<span class="function"><span class="params">(num)</span>-&gt;</span></span><br><span class="line">		<span class="keyword">return</span> ++num</span><br><span class="line">	produceItem:<span class="function">-&gt;</span></span><br><span class="line">		$(<span class="string">'&lt;p class="desPro"&gt;生产了产品&lt;/p&gt;'</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'m'</span></span><br><span class="line">	consumeItem:<span class="function">-&gt;</span></span><br><span class="line">		$(<span class="string">'&lt;p class="desCon"&gt;消费了产品&lt;/p&gt;'</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">	enterItem:<span class="function"><span class="params">(item)</span> -&gt;</span></span><br><span class="line">		@data.front = (@data.front+<span class="number">1</span>)%N</span><br><span class="line">		@data.buf[@data.front] = item;</span><br><span class="line">		str = <span class="string">"存入产品<span class="subst">#&#123;@data.buf[@data.front]&#125;</span>到缓冲区<span class="subst">#&#123;@data.front&#125;</span>"</span></span><br><span class="line">		$(<span class="string">"&lt;p class='desPro'&gt;<span class="subst">#&#123;str&#125;</span>&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		$($(<span class="string">'.bufCover'</span>)[@data.front]).animate </span><br><span class="line">			<span class="string">"height"</span>:<span class="string">"50px"</span></span><br><span class="line">	removeItem:<span class="function">-&gt;</span></span><br><span class="line">		@data.rear = (@data.rear + <span class="number">1</span>) % N;</span><br><span class="line">		@data.buf[@data.rear] = <span class="string">'e'</span>;</span><br><span class="line">		str = <span class="string">"取出产品<span class="subst">#&#123;@data.buf[@data.rear]&#125;</span>从缓冲区<span class="subst">#&#123;@data.rear&#125;</span>"</span></span><br><span class="line">		$(<span class="string">"&lt;p class='desCon'&gt;<span class="subst">#&#123;str&#125;</span>&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		$($(<span class="string">'.bufCover'</span>)[@data.rear]).animate </span><br><span class="line">			<span class="string">"height"</span>:<span class="string">"0px"</span></span><br><span class="line">	producer:<span class="function">-&gt;</span></span><br><span class="line">		<span class="keyword">if</span> @data.full==N</span><br><span class="line">			$(<span class="string">"&lt;p class='desSpe'&gt;缓冲区已全满&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		item = @produceItem()</span><br><span class="line">		@data.empty = @p(@data.empty)</span><br><span class="line">		@data.mutex = @p(@data.mutex)</span><br><span class="line">		@enterItem(item)</span><br><span class="line">		@data.mutex = @v(@data.mutex)</span><br><span class="line">		@data.full = @v(@data.full)</span><br><span class="line">	consumer:<span class="function">-&gt;</span></span><br><span class="line">		<span class="keyword">if</span> @data.empty==N</span><br><span class="line">			$(<span class="string">"&lt;p class='desSpe'&gt;缓冲区已空&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		@data.full = @p(@data.full)</span><br><span class="line">		@data.mutex = @p(@data.mutex)</span><br><span class="line">		@removeItem()</span><br><span class="line">		@data.mutex = @v(@data.mutex)</span><br><span class="line">		@data.empty = @v(@data.empty)</span><br><span class="line">		@consumeItem()</span><br><span class="line">		</span><br><span class="line">procon = <span class="keyword">new</span> ProCon</span><br><span class="line">procon.init();</span><br></pre></td></tr></table></figure>
-
+<p><iframe src="/assets/demo/coffee_pc_demo/pro-con.html" width="780" height="336" scrolling="no"></iframe></p>
+<p>##<strong>litten如是想：</strong></p>
+<ul>
+<li>我一定要学一门，至少一门函数式风格编程语言，没有太深远的想法，就觉得它就是我的菜       </li>
+<li>这个程序是66行的coffeescript代码，最后编译后得到了122行的js代码，说明编程效率提升显著          </li>
+<li>括号，方括号，花括号，还有逗号有时候会多烦人，特别是使用过ExtJs的人，而coffeescript可以没有</li>
+<li>用法简洁的jquery在coffeescript里面会更简洁                   </li>
+<li>关于coffeescript的循环，它不推荐你使用for循环，而是使用“推导”，暴露在底层的循环只有while语法        </li>
+<li>事件绑定时，使用=&gt;可以免去js上下文切换this的麻烦               </li>
+<li>coffeescript的数组迭代方法非常的酷，三言两语说不清             </li>
+<li>javascript会是下一个JVM吗？              </li>
+<li>站在产品的角度，我认为coffeescript这名字太长了-_-!              </li>
+</ul>
+<p>##<strong>附上源码</strong><br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProCon</span></span></span><br><span class="line">	data: </span><br><span class="line">		mutex:<span class="number">1</span></span><br><span class="line">		empty:N</span><br><span class="line">		full:<span class="number">0</span></span><br><span class="line">		front:<span class="number">0</span></span><br><span class="line">		rear:<span class="number">0</span></span><br><span class="line">		buf: []</span><br><span class="line">	init:<span class="function">-&gt;</span></span><br><span class="line">		i = <span class="number">0</span></span><br><span class="line">		<span class="keyword">while</span> i&lt;N</span><br><span class="line">			newDom = $(<span class="string">'&lt;div class="bufBox"&gt;&lt;div class="bufCover"&gt;'</span>+i+<span class="string">'&lt;/div&gt;'</span>+i+<span class="string">'&lt;/div&gt;'</span>)</span><br><span class="line">			$(<span class="string">'#buf'</span>).append(newDom)</span><br><span class="line">			@data.buf.push <span class="string">'e'</span></span><br><span class="line">			i++</span><br><span class="line">		$(<span class="string">'#produce'</span>).click =&gt;</span><br><span class="line">			@producer()</span><br><span class="line">		$(<span class="string">'#consume'</span>).click =&gt;</span><br><span class="line">			@consumer()</span><br><span class="line">	p:<span class="function"><span class="params">(num)</span>-&gt;</span></span><br><span class="line">		<span class="keyword">return</span> --num</span><br><span class="line">	v:<span class="function"><span class="params">(num)</span>-&gt;</span></span><br><span class="line">		<span class="keyword">return</span> ++num</span><br><span class="line">	produceItem:<span class="function">-&gt;</span></span><br><span class="line">		$(<span class="string">'&lt;p class="desPro"&gt;生产了产品&lt;/p&gt;'</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'m'</span></span><br><span class="line">	consumeItem:<span class="function">-&gt;</span></span><br><span class="line">		$(<span class="string">'&lt;p class="desCon"&gt;消费了产品&lt;/p&gt;'</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">	enterItem:<span class="function"><span class="params">(item)</span> -&gt;</span></span><br><span class="line">		@data.front = (@data.front+<span class="number">1</span>)%N</span><br><span class="line">		@data.buf[@data.front] = item;</span><br><span class="line">		str = <span class="string">"存入产品<span class="subst">#&#123;@data.buf[@data.front]&#125;</span>到缓冲区<span class="subst">#&#123;@data.front&#125;</span>"</span></span><br><span class="line">		$(<span class="string">"&lt;p class='desPro'&gt;<span class="subst">#&#123;str&#125;</span>&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		$($(<span class="string">'.bufCover'</span>)[@data.front]).animate </span><br><span class="line">			<span class="string">"height"</span>:<span class="string">"50px"</span></span><br><span class="line">	removeItem:<span class="function">-&gt;</span></span><br><span class="line">		@data.rear = (@data.rear + <span class="number">1</span>) % N;</span><br><span class="line">		@data.buf[@data.rear] = <span class="string">'e'</span>;</span><br><span class="line">		str = <span class="string">"取出产品<span class="subst">#&#123;@data.buf[@data.rear]&#125;</span>从缓冲区<span class="subst">#&#123;@data.rear&#125;</span>"</span></span><br><span class="line">		$(<span class="string">"&lt;p class='desCon'&gt;<span class="subst">#&#123;str&#125;</span>&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">		$($(<span class="string">'.bufCover'</span>)[@data.rear]).animate </span><br><span class="line">			<span class="string">"height"</span>:<span class="string">"0px"</span></span><br><span class="line">	producer:<span class="function">-&gt;</span></span><br><span class="line">		<span class="keyword">if</span> @data.full==N</span><br><span class="line">			$(<span class="string">"&lt;p class='desSpe'&gt;缓冲区已全满&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		item = @produceItem()</span><br><span class="line">		@data.empty = @p(@data.empty)</span><br><span class="line">		@data.mutex = @p(@data.mutex)</span><br><span class="line">		@enterItem(item)</span><br><span class="line">		@data.mutex = @v(@data.mutex)</span><br><span class="line">		@data.full = @v(@data.full)</span><br><span class="line">	consumer:<span class="function">-&gt;</span></span><br><span class="line">		<span class="keyword">if</span> @data.empty==N</span><br><span class="line">			$(<span class="string">"&lt;p class='desSpe'&gt;缓冲区已空&lt;/p&gt;"</span>).insertBefore $(<span class="string">"#des p:first"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		@data.full = @p(@data.full)</span><br><span class="line">		@data.mutex = @p(@data.mutex)</span><br><span class="line">		@removeItem()</span><br><span class="line">		@data.mutex = @v(@data.mutex)</span><br><span class="line">		@data.empty = @v(@data.empty)</span><br><span class="line">		@consumeItem()</span><br><span class="line">		</span><br><span class="line">procon = <span class="keyword">new</span> ProCon</span><br><span class="line">procon.init();</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -309,7 +307,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2012/12/24/coffee-pc/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwElEQVR42u3ay4rDQAwEwPz/T3thT4HFsy3NIw7UnIzjR+XSWNK8XvG6ftf78fuZv+fH1989YdnCxcWd5l7DdcdN7k3QuQEXF/c8Nw+v6KGtPzM24OLiPpM7RiQvS8IRFxf3u7jjF1SLGVxc3Odz50uXXhtlY62Gi4s7wZ0JnVXH2/u7uLi4i6YSSaj1BiRXa+Hi4p7hVsuY5LMmH8FWiytcXNzPcqubKqqbLXpvxMXFPcm9u3R8Pg+yJOB6wYqLi7uDO3NzPgjpNUCbZQ8uLu4ibrX4SRD5tozCc3BxcY9wk3iqRlsefL3NXri4uGe4a+un6gdNc9SKi4u7mZsPPvN4SgYn1eYsLi7uGW5y25mEidouuLi4x7n58TiY8vFqudzCxcU9wu1NKPLNW9X26JaBCi4ubpGbQK/W6jVi/ok2XFzcg9wzTdJeQYWLi/spbjWe8kbqzHOaHRdcXNxpbm8QmwdW3iqt/oqLi7ubWx2L5i3OauRF9+Li4h7k9sKr2hZZ8CmDi4v7MG4yOi1stOoNbHBxcR/MnW+t9j6ecHFxT3Lz5mY17PISaHFbBBcXd4I73zBN4mlV2OHi4m7m/gDWXiULZJcFGwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -387,6 +385,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -528,11 +542,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,10 +570,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -569,6 +579,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,11 +618,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

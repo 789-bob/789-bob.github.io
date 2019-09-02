@@ -185,21 +185,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>js编程时经常会用到异步处理，而异步会带了所谓的并发问题。比如，你需要向服务器发出多个ajax请求，然后在返回所有结果后做进一步处理，同时要显示动画。因此我们需要用到以下的方案。</p>
-<a id="more"></a>
-<p>###<strong>【定义函数】</strong><br>定义Batch函数。参数为函数组成的数组functions，这里面的函数将稍后执行，以及这些函数完成后的回调completionHandler。          </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Batch</span>(<span class="params">functions, completionHandler</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>._functions = functions;</span><br><span class="line">	<span class="keyword">this</span>._completionHandler = completionHandler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###<strong>【启动请求】</strong><br>用this._remaining来记录未执行的函数量，然后执行各个函数。    </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Batch.prototype.execute = <span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i;</span><br><span class="line">  	<span class="keyword">var</span> functions = <span class="keyword">this</span>._functions;</span><br><span class="line">  	<span class="keyword">var</span> length = <span class="keyword">this</span>._remaining = functions.length;</span><br><span class="line">  	<span class="keyword">this</span>._results = [];</span><br><span class="line">  	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) &#123;</span><br><span class="line">      	functions[i](<span class="keyword">this</span>);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>###<strong>【让Batch知道函数完成】</strong><br>用this._results来记录执行结果，当this._remaining为0时，表示所有函数已执行完毕。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Batch.prototype.done = <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>._remaining -= <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span>(result) !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    	<span class="keyword">this</span>._results.push(result);</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">if</span> (<span class="keyword">this</span>._remaining === <span class="number">0</span>) &#123;</span><br><span class="line">      	<span class="keyword">this</span>._completionHandler(<span class="keyword">this</span>._results);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+        <p>js编程时经常会用到异步处理，而异步会带了所谓的并发问题。比如，你需要向服务器发出多个ajax请求，然后在返回所有结果后做进一步处理，同时要显示动画。因此我们需要用到以下的方案。<br><a id="more"></a></p>
+<p>###<strong>【定义函数】</strong><br>定义Batch函数。参数为函数组成的数组functions，这里面的函数将稍后执行，以及这些函数完成后的回调completionHandler。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Batch</span>(<span class="params">functions, completionHandler</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>._functions = functions;</span><br><span class="line">	<span class="keyword">this</span>._completionHandler = completionHandler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###<strong>【启动请求】</strong><br>用this._remaining来记录未执行的函数量，然后执行各个函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Batch.prototype.execute = <span class="function"><span class="keyword">function</span> <span class="title">execute</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i;</span><br><span class="line">  	<span class="keyword">var</span> functions = <span class="keyword">this</span>._functions;</span><br><span class="line">  	<span class="keyword">var</span> length = <span class="keyword">this</span>._remaining = functions.length;</span><br><span class="line">  	<span class="keyword">this</span>._results = [];</span><br><span class="line">  	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) &#123;</span><br><span class="line">      	functions[i](<span class="keyword">this</span>);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>###<strong>【让Batch知道函数完成】</strong><br>用this._results来记录执行结果，当this._remaining为0时，表示所有函数已执行完毕。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Batch.prototype.done = <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>._remaining -= <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">typeof</span>(result) !== <span class="string">'undefined'</span>) &#123;</span><br><span class="line">    	<span class="keyword">this</span>._results.push(result);</span><br><span class="line">  	&#125;</span><br><span class="line">  	<span class="keyword">if</span> (<span class="keyword">this</span>._remaining === <span class="number">0</span>) &#123;</span><br><span class="line">      	<span class="keyword">this</span>._completionHandler(<span class="keyword">this</span>._results);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>到这里，就完成了Batch这个函数的简单功能了。</p>
-<p>###<strong>【使用】</strong><br>将Batch应用到实际上。      </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> urls = [</span><br><span class="line">  	<span class="string">'/api/gists/1000'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1001'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1002'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1003'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1004'</span>,</span><br><span class="line">  	<span class="comment">// ...</span></span><br><span class="line">  	<span class="string">'/api/gists/1337'</span>,</span><br><span class="line">  	<span class="comment">// etc...</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i;</span><br><span class="line"><span class="keyword">var</span> length = urls.length;</span><br><span class="line"><span class="keyword">var</span> batchFunctions = [];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建需要被batch执行的函数数组</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) &#123;</span><br><span class="line">  	batchFunctions.push(<span class="function"><span class="keyword">function</span> (<span class="params">batch</span>) </span>&#123;</span><br><span class="line">      	$.ajax.get(urls[i], <span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">          	batch.done(response);</span><br><span class="line">      	&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myBatch = <span class="keyword">new</span> Batch(batchFunctions, <span class="function"><span class="keyword">function</span> (<span class="params">results</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//返回各个函数的结果数组</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myBatch.execute(); <span class="comment">// 开始执行</span></span><br></pre></td></tr></table></figure>
-
+<p>###<strong>【使用】</strong><br>将Batch应用到实际上。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> urls = [</span><br><span class="line">  	<span class="string">'/api/gists/1000'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1001'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1002'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1003'</span>,</span><br><span class="line">  	<span class="string">'/api/gists/1004'</span>,</span><br><span class="line">  	<span class="comment">// ...</span></span><br><span class="line">  	<span class="string">'/api/gists/1337'</span>,</span><br><span class="line">  	<span class="comment">// etc...</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i;</span><br><span class="line"><span class="keyword">var</span> length = urls.length;</span><br><span class="line"><span class="keyword">var</span> batchFunctions = [];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建需要被batch执行的函数数组</span></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) &#123;</span><br><span class="line">  	batchFunctions.push(<span class="function"><span class="keyword">function</span> (<span class="params">batch</span>) </span>&#123;</span><br><span class="line">      	$.ajax.get(urls[i], <span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">          	batch.done(response);</span><br><span class="line">      	&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myBatch = <span class="keyword">new</span> Batch(batchFunctions, <span class="function"><span class="keyword">function</span> (<span class="params">results</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//返回各个函数的结果数组</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myBatch.execute(); <span class="comment">// 开始执行</span></span><br></pre></td></tr></table></figure></p>
 <p>这样的方案其实是参考了“观察者”模式。相关源码推荐nodeJs的Async.js库。</p>
 <p>THE END.</p>
 
@@ -306,7 +297,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2013/10/06/handling-asynchronous-js/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aSXLCQAwFUO5/aecAhOZLCqHc/byimNzPC5WmxyO+rvhaf//Vp8/3enziwsDAuC2jd6znW7461qsj5v+/PhsGBsY5jOotq6/Xd0ke05szY2BgYAyCYy/4YmBgYEwY1UMnoXb9DgYGBkZexFZJ61ba12pxDAyMGzLyrvv/v/7IfAMDA+NWjKt4rWHzYN08FQYGxtaMPMDlixEJvlf0vjkPBgbGpoykvVUNl0njbBKOf/kmBgbG1oxeKZv/xST1zJEYGBjnMHrJX6/dnz+mfPyJgYFxAqM6Hph/Wk1D/wCAgYFxQ0aykpUcLlmVyMNrOWRjYGAcwOg16PO0r5pElkcIGBgYWzN66WAeWHvZaDXQY2BgnMPIR4n5utikrdZb1MDAwDiHsf5ZL6XrjRzKM1gMDIztGPNWfjUFrD6s6EFgYGBszcibYnnzKy9u85S0OWXFwMDYglENcPlve4+jOQzAwMDYmpEAJq97iWNzBQQDA+MARnWFIj9QEnZ7gThaY8XAwNiIUS1iq2G6V/oWGoIYGBgHMJLWf6+J1lu2yIM4BgbG3oyreFVJ83FCVCpjYGBszZgXpZNQOxlwNstsDAyM2zKqQba3zpWPJJsBFwMD4wBGvig2WQibFLFRnouBgYHRasAVmvvJ+tfkjzAwMI5hVFclJkOIQkDHwMA4gJEUsZMljGpymbf/MDAwTmD0Ssc8HJe3P4phFwMDY2vGD9X3vCoWbVxwAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -384,6 +375,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -525,11 +532,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,10 +560,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -566,6 +569,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,11 +608,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

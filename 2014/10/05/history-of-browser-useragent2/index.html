@@ -191,7 +191,6 @@ var _hmt = _hmt || [];
 <p>前篇<a href="/2014/09/26/history-of-browser-useragent/">《浏览器野史 UserAgent列传（上）》</a></p>
 <h3 id="六、师夷长技"><a href="#六、师夷长技" class="headerlink" title="六、师夷长技"></a>六、师夷长技</h3><p>前面说到，微软靠Windows系统捆绑IE销售。而Windows自然也有它的对手，Linux。一个技术快速发展的时代，系统的世界里也是战火纷飞。Linux系统自从有了可视化界面，也需要浏览器呀。桌面系统KDE的缔造者们就发明了一个。</p>
 <a id="more"></a>
-
 <p>真是具有跨时代意义的工具呀，好伟大呀，人们在想，它叫什么呢？<br>但大神就是大神，大神就是讲究先从文字上占据压垮你的气势。<br>先有Navigator航海家，再有Explorer探索者，咱就叫Konqueror(Conqueror的变体)征服者吧。<br>行行行。我已懒得理这帮大神…</p>
 <p>可是，问题来了。Konqueror使用KHTML排版引擎，即使它们认为自己跟Gecko引擎一样优秀，但用户不买单。你UserAgent里没有“Gecko”字样，我就不给你经过优良排版的html。<br>结果，Konqueror思来想去，做了一个艰难但很萌的决定，把UserAgent写成<code>Mozilla/5.0 (compatible; Konqueror/3.2; FreeBSD) (KHTML, like Gecko)</code>…<br>这就是现代浏览器里<code>like Gecko</code>这一萌词的由来。</p>
 <p>就这样，伟大的排版引擎KHTML为了获得更好的资源，师夷长技。这并没什么不好，却造成了UserAgent的越发混乱。<br>KHTML与Gecko这一对，永远卿卿我我比翼双飞在UserAgent里面了。那个满含深意的“like”，有人觉得翻译成“像”，但也有人觉得应该是“喜欢”…</p>
@@ -333,7 +332,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2014/10/05/history-of-browser-useragent2/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3ay67CMAyEYd7/pcv2SJAwM26PFPvPCgFq82VhxZfXS17Xn/X5Tfbr5+fVN7ctGDBgHMu4tmvPWD1t/67svav/wIABYw5DeaW7odURKIdoHxYMGDBgCI/eb9o9CBgwYMCoM1bbkq5xQmIMAwYMGFkS6/KUIKs/87ZcHAYMGAcy9Kr7/39+pL8BAwaMoxiXufR2Zla2C3cFAwaM1gw9wFUui/stZgEXBgwYcxh6iLwraLptAKnNAAMGjAEMd7tZ6f+uct4XDAwYMAYw3FZlJey6RT2p/QkDBozWDHc8y/3GZevFux8zIzBgwGjEUP6qjD64R6CnrPa0CAwYMNox3GCXjZnqCWrWHoABA0ZvRlb82r8ga0/qxbgfuTgMGDBaM+ojXFJEN4/DKLTBgAGjNaNy7cuGLVyeMWwBAwaMpgz9ZZWWZ3bptIctYMCAMYChp52VK6AexEttABgwYLRgZCtrUtaDu94wgAEDRj+GPnLhjmXoZTsdv3wCDBgwxjCeuJApYTc7glLRDQYMGMcylGSyXu5X3qWMppVqgTBgwDiQoWe6+shFVuBz3w4DBozejMtcesB1Q6ebuEp3WxgwYLRgZM2A+oCFUsLLhjNgwIDRleGWwPR2QnZy7h5gwIAxh6Ent9mohFHiN9sMMGDAgJG1CvQtGqX/rJwIAwaMwYws+Cq88LoJAwaMAYwnmgH6FbCS6MKAAWMCo37vUkr8bmszS4xhwIDRjvEG+M1LqQqhFzkAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -411,6 +410,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -552,11 +567,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,10 +595,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -593,6 +604,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,11 +643,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

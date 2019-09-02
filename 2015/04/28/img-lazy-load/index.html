@@ -192,7 +192,6 @@ var _hmt = _hmt || [];
 <p><code>&lt;img src=&quot;xx.jpg&quot; /&gt;</code>是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。</p>
 <p>最近实现了个图片加载器，用于大型web前端项目中，关于加载图片这一话题，仔细想来可以加许多的特技。</p>
 <a id="more"></a>
-
 <p>###第一步：滚屏加载</p>
 <p>这是最容易想到的点，也是一开始就准备做的。</p>
 <p>随web体验的进步，滚屏加载代替分页加载的情形越来越多。也就是先预留图片位置，而不去加载图片，直到这个预留区域滚动到屏幕中，用户能看见了，才去加载图片。如此一来，有“按需加载”的意味，由于图片加载延后，不抢占带宽，在打开页面的首屏会快很多。我们称之为“懒加载(lazyload)”。</p>
@@ -202,26 +201,22 @@ var _hmt = _hmt || [];
 <p>图片触发加载，到图片加载完成（或失败）之间，肯定会有一段时间。不做处理的话，用户在等待的过程中，就只能看到空白的区域，非常的奇怪。在低网速，以及用户非常快的拉滚动条的情形下，这种现象将更加明显。</p>
 <p>那么在触发onload之前，就需要补一些逻辑，展示对应的loading图。<br>将需要处理的img节点作为参数，调用tempImg函数，克隆一个节点强行插在img之前，用于loading中的展示。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tempImg = <span class="function"><span class="keyword">function</span><span class="params">(target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> w = target.width();</span><br><span class="line">    <span class="keyword">var</span> h = target.height();</span><br><span class="line">    <span class="keyword">var</span> tempDom = target.<span class="keyword">clone</span>().addClass(<span class="string">"lazy-loding"</span>).insertBefore(target);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(w/h == <span class="number">1</span>)&#123;</span><br><span class="line">        tempDom[<span class="number">0</span>].src = <span class="string">"http://9.url.cn/edu/img/img-loading.png"</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        tempDom[<span class="number">0</span>].src = <span class="string">"http://9.url.cn/edu/img/img-loading2.png"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    target.hide();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>###第三步：上报监控</p>
 <p>这一步在大型前端项目中非常重要，也是经常被忽略的地方。尽管需要简易的后台配合，但不算麻烦的上报监控，能让产品更加稳定和健壮。</p>
 <p>我在两个地方用到了上报。其一是图片加载失败，触发<code>onerror</code>时，这样一来我们能知道每天图片拉取失败的量；其二是图片加载的时间，能够帮助我们分析cdn服务是否异常，分析全国慢速用户比例等等。</p>
 <p>而所谓的上报其实就是一个http请求，我会大概把这些信息带上</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="keyword">log</span>(&#123;</span><br><span class="line">	<span class="string">'type'</span>: <span class="string">'error'</span>,</span><br><span class="line">	<span class="string">'msg'</span>: <span class="string">'lazyload拉取图片失败上报 '</span>,</span><br><span class="line">	<span class="string">'url'</span>: <span class="keyword">window</span>.location.href,</span><br><span class="line">	<span class="string">'pid'</span>: <span class="number">414342</span>  <span class="comment">//产品对应的id</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
 <p>###第四步：居中截取</p>
 <p>这是前端无可避免的一个问题，先来说下此问题的背景。</p>
 <p>由于我们是先用一个空白的img标签占位，再去加载图片，如果图片的高度特别长（比如新浪长微博），加载完成时就会撑开节点，引起滚动条的跳动。由于移动端屏幕较PC窄，一个跳动就可能让你找不到前一秒正在浏览的内容，这种体验尤其严重。在移动端的web设计中，可以看到许多知名互联网公司的产品，也经常忽略这一点。</p>
 <p>因此我们可以限定占位区域的size，以此区域来做居中截取。当占位区域与图片最终展示同宽同高时，就不会引起跳动，而且也保持了视觉的一致性。</p>
 <p>其原理如下，先判断是竖向长型图，还是横向长型图，根据不同的情况，优先让宽或高填充满占位区域，然后通过不同的负margin去实现居中。</p>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> calSize = function($img) &#123;</span><br><span class="line">    <span class="built_in">var</span> w = $img.<span class="built_in">width</span>(), h = $img.<span class="built_in">height</span>(), <span class="built_in">width</span> = size[<span class="number">0</span>], <span class="built_in">height</span> = size[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(w+h == <span class="number">0</span>) <span class="built_in">return</span>;</span><br><span class="line"></span><br><span class="line">    //如果是长型图，优先适配宽度，高度居中截取</span><br><span class="line">    <span class="keyword">if</span>(w/h &gt; <span class="built_in">width</span>/<span class="built_in">height</span>)&#123;</span><br><span class="line">        <span class="built_in">var</span> newWidth = <span class="built_in">height</span> * w / h;</span><br><span class="line">        <span class="built_in">var</span> margin = (<span class="built_in">width</span> - newWidth)/<span class="number">2</span>;</span><br><span class="line">        $img.<span class="built_in">height</span>(<span class="built_in">height</span>).css(&#123;<span class="string">"margin-left"</span>: margin&#125;);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">var</span> newHeight = <span class="built_in">width</span> * h / w;</span><br><span class="line">        <span class="built_in">var</span> margin = (<span class="built_in">height</span> - newHeight)/<span class="number">2</span>;</span><br><span class="line">        $img.<span class="built_in">width</span>(<span class="built_in">width</span>).css(&#123;<span class="string">"margin-top"</span>: margin&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>###第五步：支持webp</p>
 <p>webp格式图片是google开发的一种旨在加快图片加载速度的图片格式，压缩提交大概只有jpg的2/3。随chrome的比例越来越多，其实让更多用户体验到webp也是一件好事。</p>
 <p>那么问题来了，怎么去判断用户的浏览器是否支持webp呢？<br>根据ua去判断是个好方法，但不太靠谱，因为chrome中其实也有设置，让它不能去支持webp，而且webkit本身就开源，会衍生出很多你不知道名字的浏览器。</p>
 <p>最终我使用的是特性检测：</p>
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!supportedWebPIsLoading) &#123;</span><br><span class="line">    supportedWebPIsLoading = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> images = &#123;</span><br><span class="line">        basic: <span class="string">"data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACyAgCdASoCAAEALmk0mk0iIiIiIgBoSygABc6zbAAA/v56QAAAAA=="</span></span><br><span class="line">    &#125;, <span class="symbol">$im</span>g = <span class="keyword">new</span> Image();</span><br><span class="line">    <span class="symbol">$im</span>g.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        supportedWebPIsLoading = <span class="literal">false</span>;</span><br><span class="line">        $.cookie.set(<span class="string">"iswebp"</span> , +supportedWebP);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="symbol">$im</span>g.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        supportedWebP = <span class="literal">false</span>;</span><br><span class="line">        supportedWebPIsLoading = <span class="literal">false</span>;</span><br><span class="line">        $.cookie.set(<span class="string">"iswebp"</span> , +supportedWebP);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="symbol">$im</span>g.src = images.basic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>我们会让浏览器试着加载一张非常小的base64格式的webp图片，如果能够正常加载，说明是支持webp的。</p>
 <p>并且，会把测试记录在cookie里，所以第二次直接从cookie里读结果，基本不会影响性能。完成了最重要的检查，我们就可以放心让服务器返回不同格式的图片了。</p>
 <p>End.</p>
@@ -325,7 +320,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://theone.org.cn/2015/04/28/img-lazy-load/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQXKDQAwEwPz/0841hwAzWpIqlubkctmB9mEirfT1FV+fgyv5/M93zl8fvXPbhYGB8VjG5/Q6eqz2luf45L4XPyIGBsYLGEd/OnncBDyL8uTZMDAwMJLXSSF4FNZ5EYmBgYHRBm5SPualXtL6YmBgYLQl2qytnQX3zb04BgbGAxl5q/n/r/9kvoGBgfEoxqe8kqBcKRaHT4WBgbE1Iw+4ds0iKShXAhcDA+M9jDZG22WvvDVdapUxMDBewMgHA0nUtmXfSnP7S4WLgYGxHSN53FngJqGZ/xBJGYqBgbErozjMWljwOg/KFn/YhWNgYLyA0bayKxPGPF6jCMbAwNiakS9YnL+fN6vr7W6+goaBgbEr4+JIKz6Sm0Xk+sAAAwNjP0Y7qmwjtdj4KGN92ItjYGA8kFFvkC2PM9sSc/ZvAAMDYz/GbNmifdD2aG9p2QIDA2Mjxmxsee/6RQKre18MDIyNGPkNZhE8az5vm2lgYGBsxJjdeGVVIg/Z4jgPAwPjNYzZgX7bys4Glhf3wsDAeAEjGV4m0Zy0u/lnivYYAwPjNYxZ7M4a1PYo7eJbGBgYmzI+5TVrX2fNcBG4GBgYWzPumgmuL220LetwwImBgfFYxkoDORsGzH4yDAwMjCQo2zHkbGljqZXFwMDAWF7zah8XAwMD467AbWO3bYaTAhQDA+MNjLuGAbPi74YCEQMDY2vGrFBrD93WxwztUggGBsYWjG8pt0HPKzfoowAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -403,6 +398,22 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = '[object Object]'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   
 
 
@@ -544,11 +555,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,10 +583,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
@@ -585,6 +592,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">octopress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -620,11 +631,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">
