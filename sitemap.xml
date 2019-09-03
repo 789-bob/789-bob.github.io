@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>//theone.org.cn/photos/videos.html</loc>
+    
+    <lastmod>2019-09-03T13:23:56.046Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//theone.org.cn/photos/data.json</loc>
     
     <lastmod>2018-11-27T13:11:37.000Z</lastmod>
@@ -16,14 +23,7 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2014/09/26/journey-to-yunnan/</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//theone.org.cn/2012/12/24/coffee-pc/</loc>
+    <loc>//theone.org.cn/2014/08/01/kael-qrcode-info/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -100,14 +100,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2016/09/25/diary-2016-0911-0924/</loc>
+    <loc>//theone.org.cn/2016/10/08/diary-2016-1001-1007/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//theone.org.cn/2016/10/08/diary-2016-1001-1007/</loc>
+    <loc>//theone.org.cn/2016/09/25/diary-2016-0911-0924/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -128,6 +128,13 @@
   </url>
   
   <url>
+    <loc>//theone.org.cn/2016/11/06/diary-2016-1030-1105/</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//theone.org.cn/2016/10/30/diary-2016-1023-1029/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -135,7 +142,7 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2016/11/06/diary-2016-1030-1105/</loc>
+    <loc>//theone.org.cn/2016/11/20/diary-2016-1112-1119/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -150,13 +157,6 @@
   
   <url>
     <loc>//theone.org.cn/2017/01/08/diary-2017-0101-0107/</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//theone.org.cn/2016/11/20/diary-2016-1112-1119/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -184,14 +184,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2017/05/22/diary-2017-0521-0527/</loc>
+    <loc>//theone.org.cn/2017/04/22/diary-2017-0416-0422/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//theone.org.cn/2017/04/22/diary-2017-0416-0422/</loc>
+    <loc>//theone.org.cn/2017/05/22/diary-2017-0521-0527/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -226,6 +226,13 @@
   </url>
   
   <url>
+    <loc>//theone.org.cn/2015/02/21/guide-for-zb/</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//theone.org.cn/2016/08/01/gulangyu/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -240,7 +247,7 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2015/02/21/guide-for-zb/</loc>
+    <loc>//theone.org.cn/2013/10/06/handling-asynchronous-js/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -248,13 +255,6 @@
   
   <url>
     <loc>//theone.org.cn/2012/12/13/hello-world/</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>//theone.org.cn/2013/10/06/handling-asynchronous-js/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -289,14 +289,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2014/02/12/about-pjax/</loc>
+    <loc>//theone.org.cn/2014/09/26/journey-to-yunnan/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//theone.org.cn/2014/08/01/kael-qrcode-info/</loc>
+    <loc>//theone.org.cn/2012/12/19/a-chrismas-ico/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -324,6 +324,13 @@
   </url>
   
   <url>
+    <loc>//theone.org.cn/2013/04/30/my-fairy-tale1/</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>//theone.org.cn/2013/09/10/my-fairy-tale2/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -338,7 +345,7 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2013/04/30/my-fairy-tale1/</loc>
+    <loc>//theone.org.cn/2017/06/05/my-fairy-tale4/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -352,13 +359,6 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2017/06/05/my-fairy-tale4/</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//theone.org.cn/2014/02/05/my2013/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -366,14 +366,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2013/12/20/no-one-used-pro/</loc>
+    <loc>//theone.org.cn/2013/08/20/oauth-rabbit/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//theone.org.cn/2013/08/20/oauth-rabbit/</loc>
+    <loc>//theone.org.cn/2013/12/20/no-one-used-pro/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -436,13 +436,6 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2015/06/05/viewing-commentary/</loc>
-    
-    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>//theone.org.cn/2014/03/30/volunteer-activities/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
@@ -450,14 +443,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2013/09/25/web-worker-learning/</loc>
+    <loc>//theone.org.cn/2015/06/05/viewing-commentary/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>//theone.org.cn/2015/02/23/yilia-on-mobile/</loc>
+    <loc>//theone.org.cn/2013/09/25/web-worker-learning/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -506,7 +499,14 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/2012/12/19/a-chrismas-ico/</loc>
+    <loc>//theone.org.cn/2015/02/23/yilia-on-mobile/</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//theone.org.cn/2014/02/12/about-pjax/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -520,7 +520,7 @@
   </url>
   
   <url>
-    <loc>//theone.org.cn/assets/demo/hack_demo.html</loc>
+    <loc>//theone.org.cn/2012/12/24/coffee-pc/</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
@@ -528,6 +528,13 @@
   
   <url>
     <loc>//theone.org.cn/assets/demo/jiugongge_demo2.html</loc>
+    
+    <lastmod>2017-07-28T18:51:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>//theone.org.cn/assets/demo/hack_demo.html</loc>
     
     <lastmod>2017-07-28T18:51:08.000Z</lastmod>
     
