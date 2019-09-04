@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="//theone.org.cn">
+  <link rel="dns-prefetch" href="https://theone.org.cn">
   <title>展示豆瓣未登录首页的chrome插件 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="某天，我惊讶的发现，豆瓣未登陆时的首页，比登录后的首页还要好玩！其实，并不是只有我一个人这么觉得，我甚至见过有人专门打开隐身窗口刷此页面，真是机智的少年。         不是很理解之余，这个chrome插件豆瓣首页 for chome就诞生了。 但这个问题很有意思。">
 <meta name="keywords" content="工具,chrome">
 <meta property="og:type" content="article">
 <meta property="og:title" content="展示豆瓣未登录首页的chrome插件">
-<meta property="og:url" content="//theone.org.cn/2014/10/16/douban-index-for-chrome/index.html">
+<meta property="og:url" content="https://theone.org.cn/2014/10/16/douban-index-for-chrome/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="某天，我惊讶的发现，豆瓣未登陆时的首页，比登录后的首页还要好玩！其实，并不是只有我一个人这么觉得，我甚至见过有人专门打开隐身窗口刷此页面，真是机智的少年。         不是很理解之余，这个chrome插件豆瓣首页 for chome就诞生了。 但这个问题很有意思。">
 <meta property="og:locale" content="default">
@@ -324,7 +324,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQY4jIQwF0Lr/pTPbkWaq+n+TtBR4rFqtFPBYWNjmuuLxuhnJ7//+z91s/357fWJgYGB8LeP1OJKF21WSPeR7w8DAOIdxN3X+m+dQmwfo2boYGBgYSfB9Xv4Zls+DgYGB0QbclVCbJLEYGBgYbRKbTL1+Bfx4Lo6BgfGFjLxY9vt/f6S/gYGB8VWMVznaon9++cuD7H92hYGBsTVjlqAmpKRtUCSoycFhYGBsyljZVv44Y+VSGD0dw8DA2JoxawPMMHk5rw3fGBgYezNWNpFc6dqvhu1PDAyMwxizZxDrD8VmzywwMDDOZCThNQHkz85Wjq9uYWJgYHwhY5a+rvBm5blotxgYGJsy8mJ9W6BvU9NZwoyBgXEOI09B86S0fUbWHtBtJxYDA2NrRgLLn0S8a54IiYGBcQAjD6BtI6FtGwxbCxgYGFsz2oTzebuzzSXfXsnAwMDYlFFYZydUthbaQh4GBsYJjJUGZJ585uzZ8wsMDIwTGHkQTJqOs6tn2/L8oXaIgYGxNaMtk+UBOse0K2JgYJzDmDUR87A7K8AVdz8MDIxNGa9y5OWwthmw1M7EwMDYmvGulkCeyrYHNEtuMTAw9mO0aWR++atLZisBFwMD4wBGW9BfD6krDYnbey4GBgZGEFjbh1xtIL5WJsLAwDiGkTcs28bkUhMCAwPjAEayZFvcn10rh+U/DAyMrRlt6tgG5baRMDssDAyMTRl/ACnpaphslvobAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3aS47CMBAFQO5/aUaaLQO85w5o4pRXCAUnlUXTH99u8br/rsfPyfXJPveHdfvEwsDAOC3j/nK9vuWzh04eqL3XGyoGBsYFGG1wTHZog3Xygp5+j4GBgfEygOYhOLkjBgYGxjzgtlcmpCRNxMDAwEi2a5tuyf7JXQ6uxTEwME7ImAwGPv35S/MNDAyMf8y4j1eeGq4liNEzYGBgbM3Ix41JUZokcHmxWiejGBgYl2G0Lf6oEbY0GGhHERgYGLsykqStDZd5OJ4MTaN/DAwMjI0YySN+v2QtklcMDIytGW3C15aaawVt2/nHwMC4AmOSzOU7tOG7DusYGBibMtY2nXwzKYmfvg4MDIytGW1B2xal7aggb7eN6nIMDIxTMdoELr8+GV7mxzvehGkMDIytGWuFaDt0bEcFo1eAgYGxHaNtq7UDyLbz1yaXGBgYV2O0Q4Jj2WuAqGuIgYFxckZ+wmrSSlsL02sHODAwMK7GmA8vk9J0rWzGwMC4GuOohKxtvbWDgTe/wsDAuAwjT9HWwMlYNE9DR0cuMDAwTsVYC6xrbf1JOVoPDDAwMLZgrDXr24A7ObSRvAIMDIy9GW0BubZFUtC+vtcoNcTAwNiCMTnglaePeVI4mmBgYGBszUiCbBJw22MTa4OBP36LgYGBUTLa4vaAZBQDAwNjKZmbDziLyhsDA+MCjLzsPCq8tkcrDqvFMTAwTsiYDAbWEsQ8fK8NRDEwMDZi/ACy5JNhp8qXDwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -515,14 +515,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -531,15 +523,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">

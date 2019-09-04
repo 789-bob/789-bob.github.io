@@ -5,24 +5,24 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="//theone.org.cn">
+  <link rel="dns-prefetch" href="https://theone.org.cn">
   <title>和弦推导逻辑简析 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="诚然，吉他有上千个和弦。世界上最厉害的吉他大师，也无法一眼辨识出所有的和弦。 更多时候，我们熟记几个基本的和弦，然后通过一定的计算法则，去推导其他的和弦。因而推导的逻辑就非常重要。 《吉他三月通》一书把这乐理洋洋洒洒说了一百多页，我想试着让事情简单一些。 最后，我们将逻辑实现成一个小程序，可以方便打印出想要推导的和弦。 ###音乐与数学 既然是逻辑，都可以用数学去建模，然而音乐与数学之间，却有">
 <meta name="keywords" content="旧事">
 <meta property="og:type" content="article">
 <meta property="og:title" content="和弦推导逻辑简析">
-<meta property="og:url" content="//theone.org.cn/2015/05/25/logic-of-chord/index.html">
+<meta property="og:url" content="https://theone.org.cn/2015/05/25/logic-of-chord/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="诚然，吉他有上千个和弦。世界上最厉害的吉他大师，也无法一眼辨识出所有的和弦。 更多时候，我们熟记几个基本的和弦，然后通过一定的计算法则，去推导其他的和弦。因而推导的逻辑就非常重要。 《吉他三月通》一书把这乐理洋洋洒洒说了一百多页，我想试着让事情简单一些。 最后，我们将逻辑实现成一个小程序，可以方便打印出想要推导的和弦。 ###音乐与数学 既然是逻辑，都可以用数学去建模，然而音乐与数学之间，却有">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//theone.org.cn/assets/blogImg/chord1.jpg">
-<meta property="og:image" content="//theone.org.cn/assets/blogImg/chord2.png">
+<meta property="og:image" content="https://theone.org.cn/assets/blogImg/chord1.jpg">
+<meta property="og:image" content="https://theone.org.cn/assets/blogImg/chord2.png">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="和弦推导逻辑简析">
 <meta name="twitter:description" content="诚然，吉他有上千个和弦。世界上最厉害的吉他大师，也无法一眼辨识出所有的和弦。 更多时候，我们熟记几个基本的和弦，然后通过一定的计算法则，去推导其他的和弦。因而推导的逻辑就非常重要。 《吉他三月通》一书把这乐理洋洋洒洒说了一百多页，我想试着让事情简单一些。 最后，我们将逻辑实现成一个小程序，可以方便打印出想要推导的和弦。 ###音乐与数学 既然是逻辑，都可以用数学去建模，然而音乐与数学之间，却有">
-<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/chord1.jpg">
+<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/chord1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -363,7 +363,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3azW6EMAxF4Xn/l6abLkaqgHOdUAn7ZDXqwJCPheuffD54HV+LfHucrO9v/34++8u2JUOGjNcyjst1dg3Z7vWma889faEyZMgYwDiLYOTx/HoeJ/neZMiQIYOkawdYaSopQ4YMGesMXnyStO/6LzJkyJDBi0mezK235x6sxWXIkPFCBu+6///nR+YbMmTIeBXjCFd6Fy+Aa/v5vVeGDBmtGTzA8YSslhqmhy1kyJAxh0E2tz6YXEkKyQEOGTJk9GakN6dhkQfiDcMJGTJkNGXUAiIPpiuNPD4WlSFDRm8GL1lJoEwfWStlg9ckQ4aMFoz1vJJ8WzuoQYphGTJkTGDsavrz0FlrtKG7ZMiQ0ZRBkrmV46QrKWbwyzJkyBjD4LeRx6wcxUhDsAwZMiYw0iIzLUf52DK9UoYMGXMYtUZYGqb5cJQ32m5SQxkyZDRipCs97MWb+8EYgOetMmTIaMFIz2Lwza2E0eJhCxkyZLRj8KC50nSr/X5QxMqQIWMYgx+/qLXheEoaH0qTIUPGAAa/Lb0mTfUeKWVlyJDRiLHr8BZPFvlGb/4NyJAhoymjNhKoPTIdG/DxpwwZMnoz+EpHm/wX0vKYl9kyZMjoxNjV9tqV6tX2IEOGjAmMtA2XvgI+Zig2B2XIkCEDH4BIhwS1gcHNGTcZMmSMZ6T1cdq2q70yGTJkTGDw9I6Xu7w9l3YBZciQMY2Rlo58VEmC7+PHxWTIkPFuxg+AQtE/i7W8twAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS3LjMAwFwNz/0s52UrHkB0DKlMjmyguJYnuBwodfX/F6/bPyJ4+eP3om/0pzYWBgPJbxOl3JB3q83/sf/T5/FwMDYx/G+eF+P3O03STqn/M+fAUDAwMjOG6SCM6/i4GBgZFsd36gXpj+DwEXAwPjgYxekdkrYqt/2cW1OAYGxgMZeXn5979vmW9gYGA8ivEqrklL7ny3PMi+2QcDA2NpxmQAWW2QJYPMUaKJgYGxAeM85CXtsCRoJiG7OYTAwMBYlHH+2qQ1lrMnofxNhouBgbEc4+6xYu+6anKq5uQBAwPjsYzqxYs8scuTzvlJMDAwVmVUW2O90WO1JC638zAwMLZhXFVM5i22OeBHLY6BgbENIy9x80/2UsC8PMbAwFib8TcpYK+FlzfvMDAwdmDMD33VOKE6csDAwMBoXiQtNu/yfaITYmBgLMdIWva9hC+/JNF76027DQMDYxvGpAStXvDKRxEfUkkMDIylGfmYMAEnCV+yQ+9CBgYGxg6MeRFbDZH5caNWIAYGxpaM/FLFJIAm+0RtPgwMjG0Y1VRvcp2r11w73AEDA2NRxqu45kVvtT2XXMXAwMBYm9ELdtVn8r9gUvRiYGCszZgE2aT4vOP6xYfBAAYGxqKMauCbjzAvRmJgYGDER6wG0KvCNAYGBkZyxN7R8+TyloCLgYHxKEa1lZ8H1qQcnbyFgYGxA6Oad91xqau6f3OoiYGB8TzGN0kodHJ8xLrUAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -554,14 +554,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -570,15 +562,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">

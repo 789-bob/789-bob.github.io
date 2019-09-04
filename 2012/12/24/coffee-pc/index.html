@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="//theone.org.cn">
+  <link rel="dns-prefetch" href="https://theone.org.cn">
   <title>生产者-消费者模型的coffeescript实现 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这两天一直在看coffeescript相关的东西，也帮一个朋友搞了个生产者-消费者模型的C语言实现。想到还没用coffeescript真正意义上写过程序，那就尝试做一下吧。 其实《CoffeeScript小书》是暑假实习时就买了，一直比较向往着函数式编程却拖延了很久没行动起来。小书只有几十页，本是github上一个开源的项目，我喜欢这种轻巧的文字。语法部分看下来，再看下类与继承，只花了半天的时间，">
 <meta name="keywords" content="js,coffeescript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生产者-消费者模型的coffeescript实现">
-<meta property="og:url" content="//theone.org.cn/2012/12/24/coffee-pc/index.html">
+<meta property="og:url" content="https://theone.org.cn/2012/12/24/coffee-pc/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="这两天一直在看coffeescript相关的东西，也帮一个朋友搞了个生产者-消费者模型的C语言实现。想到还没用coffeescript真正意义上写过程序，那就尝试做一下吧。 其实《CoffeeScript小书》是暑假实习时就买了，一直比较向往着函数式编程却拖延了很久没行动起来。小书只有几十页，本是github上一个开源的项目，我喜欢这种轻巧的文字。语法部分看下来，再看下类与继承，只花了半天的时间，">
 <meta property="og:locale" content="default">
@@ -325,7 +325,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwElEQVR42u3ay4rDQAwEwPz/T3thT4HFsy3NIw7UnIzjR+XSWNK8XvG6ftf78fuZv+fH1989YdnCxcWd5l7DdcdN7k3QuQEXF/c8Nw+v6KGtPzM24OLiPpM7RiQvS8IRFxf3u7jjF1SLGVxc3Odz50uXXhtlY62Gi4s7wZ0JnVXH2/u7uLi4i6YSSaj1BiRXa+Hi4p7hVsuY5LMmH8FWiytcXNzPcqubKqqbLXpvxMXFPcm9u3R8Pg+yJOB6wYqLi7uDO3NzPgjpNUCbZQ8uLu4ibrX4SRD5tozCc3BxcY9wk3iqRlsefL3NXri4uGe4a+un6gdNc9SKi4u7mZsPPvN4SgYn1eYsLi7uGW5y25mEidouuLi4x7n58TiY8vFqudzCxcU9wu1NKPLNW9X26JaBCi4ubpGbQK/W6jVi/ok2XFzcg9wzTdJeQYWLi/spbjWe8kbqzHOaHRdcXNxpbm8QmwdW3iqt/oqLi7ubWx2L5i3OauRF9+Li4h7k9sKr2hZZ8CmDi4v7MG4yOi1stOoNbHBxcR/MnW+t9j6ecHFxT3Lz5mY17PISaHFbBBcXd4I73zBN4mlV2OHi4m7m/gDWXiULZJcFGwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aywrDMAxE0fz/T6fQXShxZkZxwfLNqgTq+HghrMdxyM/5fe7enMIz/u/vOseMBwYMGMsylM/fbUXfUP3N+GhgwICxA2McZJUPKMFaCa/j47t9DwMGDBjDj+kB1F0ZBgwYMCoBt35lzI4PBgwYOzOUJHa8aaVM5n5lSi4OAwaMBRluY+Cfvyf2N2DAgLEI4zSfcZDNwm7WEL2sAAMGjNYMvZSmvH8rfVUui/Y8CAwYMFowsouau6F6I0Eqt8GAAaMdox529RBZKpYpKS4MGDBaM7Jyv164z9YsHQQMGDBaMJQil35pc1NcnWFMi8CAAaMdw+0DVoYz9IPQk2p7cgQGDBgLMtybo34qekHfKP3f/QsGDBgbMCqjD9kWK8cBAwaMPRkzGpD1MQvjgGDAgLEZIyvo6wUyPUzb0yIwYMBozagPgenjEVk4flgHBgwYGzCyhPO1Yll0BNKwBQwYMNox9PBaSVCztmhYboMBA0YLhn6xc5udShqchWYbAAMGjMUZ+geywOduOlwBBgwYGzDcYFdJOyuDFw8BFwYMGE0Z81qMbsvTvSbCgAFjH8ZpPu6GsrxZKbRdfsOAAaM1I0smK6HWXdltqcKAAaMrQ28xuqmvmyS7l8uwUwoDBoxlGXrhrNLgzIKydJQwYMCAYZbss9HYUriHAQMGDCGxdAtk2bjqQ3sABgwYrRn1wYiMpBTyjE4sDBgwmjIq5Xs3uc1C+VvNURgwYCzI+ACDV0up2fDcdwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -516,14 +516,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -532,15 +524,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">

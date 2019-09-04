@@ -5,24 +5,24 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="//theone.org.cn">
+  <link rel="dns-prefetch" href="https://theone.org.cn">
   <title>web worker简易入门 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js是单线程的语言，由于此特性，我们在处理并发时需要用到一些技巧，如setTimeout()，setInterval()，调用XMLHttpRequest等。但这里的并发只是非阻塞（参照John Resig的文章How JavaScript Timers Work），真正的多线程编程则需要HTML5的web worker。">
 <meta name="keywords" content="html5,web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web worker简易入门">
-<meta property="og:url" content="//theone.org.cn/2013/09/25/web-worker-learning/index.html">
+<meta property="og:url" content="https://theone.org.cn/2013/09/25/web-worker-learning/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="js是单线程的语言，由于此特性，我们在处理并发时需要用到一些技巧，如setTimeout()，setInterval()，调用XMLHttpRequest等。但这里的并发只是非阻塞（参照John Resig的文章How JavaScript Timers Work），真正的多线程编程则需要HTML5的web worker。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="//theone.org.cn/assets/blogImg/web_worker1.png">
-<meta property="og:image" content="//theone.org.cn/assets/blogImg/web_worker2.png">
+<meta property="og:image" content="https://theone.org.cn/assets/blogImg/web_worker1.png">
+<meta property="og:image" content="https://theone.org.cn/assets/blogImg/web_worker2.png">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web worker简易入门">
 <meta name="twitter:description" content="js是单线程的语言，由于此特性，我们在处理并发时需要用到一些技巧，如setTimeout()，setInterval()，调用XMLHttpRequest等。但这里的并发只是非阻塞（参照John Resig的文章How JavaScript Timers Work），真正的多线程编程则需要HTML5的web worker。">
-<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/web_worker1.png">
+<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/web_worker1.png">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -447,7 +447,7 @@ function tryWorker(){
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQW7EMAgF0Ln/pdNtpWk9H0grxX5eVZk0zssCAeb1itf1tr5fX9//fuf6Cb8984aFgYHxWMa1XMk9ycbrO3v7YmBgnMb47dHrsJhf/4uAjoGBgZEndkkimFxJPh8GBgZGHnCrid061Ut4GBgYGMkGeTBdgycB/YZaHAMD44GMvMj8/7//5HwDAwPjUYyruJJDyvWV+Tv88FYYGBhbM/IA1ys781GM6rAFBgbGOYxqY6taoPZK4vyg9FX9chgYGA9krH+oXkm27B0e5O+DgYGxKyNv+ve2yVv51WOGQkcQAwPj4Yy8gMxHJaqturzQjZAYGBiHMZLWWH5PHspzMAYGxgmMaoM+b6LNx8vyBh8GBsbejF7ATZK/yRFpNYhjYGDsypi8XPUwstqAK7wbBgbGAYxeUyxvuvXCbt4ExMDA2JtRTePuKmvzdPCGYQsMDIyNGJP2fbRNK6Esz4xgYGBsyug14nujFZMitpztYmBgbMS4glUdrZgcQzZLYgwMjAMY1cZ9nszdVbh+wGBgYBzASDbrAfIAXaViYGBgTAraak/shv/CwMDYlHEVVxIiqyG7N67x4fASAwNjI8bkZLB65Dlp2PUaeRgYGDsx5i2w3tBGtfT9UDZjYGAcwMgD32TUbFLERnkuBgYGRjFZ7AXc0VgYBgYGxk0ttuqLRp8GAwPjAEZ5uCFOBxNeNRnFwMA4jTEpHSfp4DxlxMDAOIDxBX+xS6kcc2aKAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW7cMBAEQP//05urA0dC91AGIrJ0MnZXIksHejjNr6/4+vy4vn9+9Zvv3+ZPu7rrgQsDA+O1jM/tdTXAz8FmU796HfncMDAwzmFcDZz85n5yCS9/WZefY2BgYAQFXL44tjAMDAyMGSN5wv1+879YcDEwMF7FSDax+bLYttKSzfNje3EMDIwXMtaXyN/7+1fyDQwMjFcxPuX1VMG3PpO/nomBgbE1I1/g2mgzLwFnW2IMDIxzGLNjFm142Tb1ahgGBsbWjNk+sV0W24W4bephYGCcwLifYjv8MIBcf98YGBhbM/KCb2VybQuvHQUDA2Nvxmz4lQ3wLDAoUlYMDIyNGO3Br2cb+rMi8h93YWBgbM2YLa8rTbq2Ys2DBwwMjF0Z98Xcw9lCGTMUoSkGBsbWjFn5lceNbfNuKTDAwMA4hjE8A1u+lATcPgcDA2NXRluQtZ/MAoC86MTAwDiBkS95s6Uw7/nl8eflvwcMDIytGW2Tq80c8shzhsHAwDiBMSvFVg6KzTa3UWmIgYGxNSMv72ab2HxRzje0GBgYpzHaYWbTzQ9b1HdhYGBsylgp72ZRZRtzFs01DAyMTRn5td7PW2/9t7EoBgbGToy2TTbb+q5EEcldGBgYJzCSGKCd0Mprqg+QYWBgYMS/aevQ/IhGfU4EAwMDY1TGta29IuDEwMA4gJGHAe0GNY8zlyJSDAyMrRn51nH9wMRsEo+FmhgYGO9j/AFQ9APxTtxOAAAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -638,14 +638,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -654,15 +646,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
