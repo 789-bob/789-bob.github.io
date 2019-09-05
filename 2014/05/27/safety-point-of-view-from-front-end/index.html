@@ -5,27 +5,27 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>前端安全冷门知识杂谈 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="零、概述提起web前端安全，大家都会想到两个名词：xss和csrf。抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。大概分为以下章节：  盗取无法用js读写的Cookie删不掉的本地存储函数覆写监听上报内存Cookie与硬盘CookieCSS带来的点击量泄露JSONP回调函数与UTF-7编码过滤与代码混淆心理学与社会工程学                    资料">
 <meta name="keywords" content="web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端安全冷门知识杂谈">
-<meta property="og:url" content="https://theone.org.cn/2014/05/27/safety-point-of-view-from-front-end/index.html">
+<meta property="og:url" content="//theone.org.cn/2014/05/27/safety-point-of-view-from-front-end/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="零、概述提起web前端安全，大家都会想到两个名词：xss和csrf。抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。大概分为以下章节：  盗取无法用js读写的Cookie删不掉的本地存储函数覆写监听上报内存Cookie与硬盘CookieCSS带来的点击量泄露JSONP回调函数与UTF-7编码过滤与代码混淆心理学与社会工程学                    资料">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/safety_001.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/safety_002.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/safety_003.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/safety_004.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/safety_005.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/safety_001.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/safety_002.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/safety_003.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/safety_004.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/safety_005.jpg">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端安全冷门知识杂谈">
 <meta name="twitter:description" content="零、概述提起web前端安全，大家都会想到两个名词：xss和csrf。抛去这最常见，最被广泛应用的两者，我想谈谈一些难以觉察的，比较偏门的安全关注点。大概分为以下章节：  盗取无法用js读写的Cookie删不掉的本地存储函数覆写监听上报内存Cookie与硬盘CookieCSS带来的点击量泄露JSONP回调函数与UTF-7编码过滤与代码混淆心理学与社会工程学                    资料">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/safety_001.jpg">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/safety_001.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -186,6 +186,28 @@ var _hmt = _hmt || [];
         <a href="/2014/05/27/safety-point-of-view-from-front-end/" class="archive-article-date">
   	<time datetime="2014-05-27T15:52:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-05-27</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">10分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -355,7 +377,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3awW5iMQwF0P7/T3ekWXWkAvfaCe1I561QgSQnSHFq++Mjfj7/Pvm7n1+e9vNf3330+vCDh4eHN1r6o+fRNI8+mTAS0mwN36wEDw8P7xrv+eKSwNAuN5/lOfWFBQ8PD+9HecWgo816/hk8PDy8/5E3w7dX7SQY4OHh4f0GXnst3k/fXrKv51rw8PDwYl57lP+G1xfre3h4eHiLqvqmJDabpW0veDEaHh4e3gXePpWwvxa3wSAvhuHh4eG9k5f/e38qtCSblf8MLwIDHh4e3iFee9DvF9q2IOQbfSCO4eHh4T0YOS8pzQ7rZPxkzFkDFh4eHt49XltYypsM8mCTj1zMgoeHh3eNty9ozVoQ8oaAtmD2T30PDw8P7yivnXh4tY3DwGYlB/YVDw8Pb8GbvW6ps5RxvmV4eHh47+HliYA2POQpiTb1EG0HHh4e3lHeqcM3R85CRZ7YxcPDw7vNy5e4KUq1pbJNwKhTEnh4eHgxb3YQJ41Zm7/PfqUi4uHh4eGtefviVj5CvsR9KxgeHh7ebd6s5D9L3c4aFNqUBB4eHt57eHnRK0/RtsmOWfHsxZUaDw8P7xDvVHI2WVB7ma6LW482CA8PD+8CL5lgsx37hqrNJRsPDw/vBu8zftoGqbzMtm/Miqp8eHh4eId4s9RAm+RtQ0Vb7nrxLTw8PLyjvPyKPEuztoWr2UZHO4GHh4d3gZcw8uRCe1mvl95mqfHw8PDWvM0i8kvzPlH7PHg8XBseHh7eBd7swM0vvkX9rfzWrLEADw8P7xQvL3q16YwcPGvMSpIpeHh4ePd4eVGqTdq2CYg2duHh4eH9fl5eNsuTvJvLepSlxsPDw/sh3qki2aZeV8+Oh4eHd42XH9ltMMjTtXmprJgLDw8P7wJvVgBLkhT5svYtAofre3h4eHjfz/4HKT/kKZ8nXD8AAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aW07sQAwFQPa/aZD4QqCE40eHQap8XQ0zSVdfqe3YfnuLr/fP6+cnXz+/+s7VX+/v//Mp93cYXXh4eHitpV9dCSaBJXeoPvF+zXh4eHinefeH9f2DJ0d/NTzka8bDw8N7Bd5WwEg2K99uPDw8vP/IS35Vvc/k+3h4eHjP8JJixIly8DytX6u14OHh4cW86rJe4d8H+3t4eHh4g656HiqSo7maat8XMqJ14uHh4R3gVRdabXH1jvVqyfiXp+Dh4eGt8hJGfmRXCxzJpvRKGHh4eHjnePmXqsOmydYkv8rT8XJ/Dw8PD6/Fyxv2yTerd5g0vaKXATw8PLwDvCcHofIgkce0JMzg4eHh7fLmyeskeOQbh4eHh/dqvOqCqmWFOWM0dIWHh4e3ystHo/IF9QYO8jDTG3rAw8PD2+WV92Cwf0kJI19DtCl4eHh4q7zeLXol2l4Jo/pJuQqCh4eHN+D1iq29xLrXWlsYGsDDw8Mb83ZLujk7HyOobm703oCHh4c34OXH93xwKk+Rq6n55crx8PDwHuT1Crt5a7+alK/FOjw8PLwxr5oWT9hJMSJ/Vh5s8PDw8HZ5u2WC3ojA7q/w8PDwnuH1GL0C7lbCHf2X4OHh4R3jJadodSQrDzNz3uWv8PDw8A7w8hGBavO+WortDQ3g4eHhPc/bHQhIAkPe7qoOhEVvDHh4eHhjXt6Gzx+fJ9bV7eiFKzw8PLxd3nvxyg/rahEhSZGTogYeHh7eaV712M0Dye5wVR6c8PDw8J7hTVLeXgutt9BeWQQPDw/vHO/+WK82n5KQkISHXujCw8PDe2VeNZnuJcr5m8FlMRcPDw/vj3i9BLfXbNtK0PHw8PDO8fJCw7zdVU3QewNYeHh4eOd4kwZYrzCRA/KwcaS/h4eHh/f9nh+y/pKXDJ2kbwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -566,11 +588,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,10 +605,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,19 +624,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -650,11 +672,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -5,27 +5,27 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>作为一个前端，可以如何机智地弄坏一台电脑？ | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="有人说，前端的界限就在浏览器那儿。 无论你触发了多少bug，最多导致浏览器崩溃，对系统影响不到哪去。这就像二次元各种炫酷的毁灭世界，都不会导致三次元的世界末日。然而，作为一个前端，我发现是有方式打开次元大门的… 这个实验脑洞较大，动机无聊，但某种意义上反映了一些安全问题。想象一下，有天你在家里上网，吃着火锅还唱着歌，点开一个链接，电脑突然就蓝屏了！想想还真有点小激动。">
 <meta name="keywords" content="js,安全,黑科技">
 <meta property="og:type" content="article">
 <meta property="og:title" content="作为一个前端，可以如何机智地弄坏一台电脑？">
-<meta property="og:url" content="https://theone.org.cn/2015/07/06/hack-in-localstorage/index.html">
+<meta property="og:url" content="//theone.org.cn/2015/07/06/hack-in-localstorage/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="有人说，前端的界限就在浏览器那儿。 无论你触发了多少bug，最多导致浏览器崩溃，对系统影响不到哪去。这就像二次元各种炫酷的毁灭世界，都不会导致三次元的世界末日。然而，作为一个前端，我发现是有方式打开次元大门的… 这个实验脑洞较大，动机无聊，但某种意义上反映了一些安全问题。想象一下，有天你在家里上网，吃着火锅还唱着歌，点开一个链接，电脑突然就蓝屏了！想想还真有点小激动。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/localstorage1.png">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/localstorage3.png">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/localstorage2.png">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/localstorage4.png">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/localstorage5.png">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/localstorage1.png">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/localstorage3.png">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/localstorage2.png">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/localstorage4.png">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/localstorage5.png">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="作为一个前端，可以如何机智地弄坏一台电脑？">
 <meta name="twitter:description" content="有人说，前端的界限就在浏览器那儿。 无论你触发了多少bug，最多导致浏览器崩溃，对系统影响不到哪去。这就像二次元各种炫酷的毁灭世界，都不会导致三次元的世界末日。然而，作为一个前端，我发现是有方式打开次元大门的… 这个实验脑洞较大，动机无聊，但某种意义上反映了一些安全问题。想象一下，有天你在家里上网，吃着火锅还唱着歌，点开一个链接，电脑突然就蓝屏了！想想还真有点小激动。">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/localstorage1.png">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/localstorage1.png">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -186,6 +186,28 @@ var _hmt = _hmt || [];
         <a href="/2015/07/06/hack-in-localstorage/" class="archive-article-date">
   	<time datetime="2015-07-06T14:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-07-06</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -360,7 +382,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQY6DMAwF0N7/0p1tpQr6bdNRSV5WFQ2Qx8JKbD8e8Xi+jffrRzNf/32dc/T7ff5lAwMD47aM5+moMvLnn3+IfG0YGBj7MI5efzSnF4LzmJmvDQMDAyMhnV9Plpt/PgwMDIz545K7zudjYGBgTA6x1dBZDbJ58g4DA2M3Rr6Z+//fX6lvYGBg3IrxLI7eNrEaIsurwsDAWJpRPWomsF45s3f0xcDA2IdxnvbKD5DVxFle7EyuYGBgrMqoLjFv3kpgebrtAwYDA2NpRnVq7zX5Xb1mMgwMjLUZvUpCUmiszszXVugWwcDAWJRxVXK/t6C82QIDA2M3xrwVrJc4y+d/eBoGBsYGjKt6q3pH00JC7ehTYmBgbMAoHBfjVF21AFDdOB6WMDEwMJZjVNssqpu2HNY77mJgYOzGmDRbVDdz1Yaz6NCLgYGxNCMpVfZGryxa3ZJiYGCszei1O/QSatWkW2EriYGBsTTjfPM3b8iopvPmR2IMDIxVGTkg397l6bwq6cMGEQMDY2nGVcfLSRCfFDgxMDB2YEwWOt9E9j5Kub6BgYFxQ8Yk0V/9NwfndzUrGBgYGLdiTEqMvXLjZH6z2QIDA2MJRrLESeCblAfyNjUMDIwdGNXAlzez5gG0F/oxMDAwqmGxWoy8oE8EAwMDY7y4JHAnybuvB1wMDIyfZySH2CRv12tjrbamYWBg7MaoNlVUk/i9RXylqImBgXE/xh9V6FWDL4yHvgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACO0lEQVR42u3a227CMBBF0f7/T1OpT1QUs89xWpXxzhNCUeJlpGEu/vjA1+3ruv98/83jnc/uf/x+/fniS4YMGW/LuC2v7pWP3683Yv3e9dpkyJBxDoME2fWj061Z359ukwwZMmSkgZg8fx18ZciQIWM/4JIFdYWxDBkyZOwUsTwRJNvRFbcX1OIyZMh4Q0YXHP/m86/PN2TIkPHvGbfqShNB3ozrViVDhozZjP3ikyeInEHacKhvJ0OGjBGMrmTliSM/fpEmiC/+N2TIkDGIkQY4khryZhw/flEWtDJkyBjBSIMgX1y60C5N/Pa/IUOGjNGMrmXWjQ26BPTFlsmQIeMABgpqVYHapYPpFsiQIeMEBgl8/OAXL0TjISXvGsqQIWMcI23Wk5Ycv+eCpp4MGTKOYfBgx1NJXuJ2A4wXGa4MGTLGMQiGhNd0zsjf+HQlMmTIOIZBHteNKru2WlA2y5AhYzSjGy52Q0e+NTx8//CbyJAhYygjXdz+2CDdpoAqQ4aMoYwuBSRhND1ysTUwkCFDxgGMbpyZpm47W1D+Y8iQIWMQgyd8fCTZtfO64agMGTJmM7rDWN1IkieCcaNNhgwZQxm38NoPx+l4AAV0GTJkjGakx0Z5S64j7aSeMmTImM3grXzejNsfecaDTBkyZBzA4MdMSU28g7ygCpchQ8bxjDgUgmV1YVeGDBky0qbY/iCBBGgZMmSczOiOO/BDFTxMx6FWhgwZBzD2BwM7SWH6xu6IhgwZMt6W8Qn9KfAurPv1BwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -571,11 +593,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,10 +610,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,19 +629,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,11 +677,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

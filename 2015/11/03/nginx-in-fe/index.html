@@ -5,25 +5,25 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>Nginx能为前端开发带来什么？ | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Nginx那么好，我想去看看。接连逛了两个书城后，我发现并没有Nginx相关的书籍。这就很奇怪！  Nginx，一名网红（网络服务器红人…），就算没有自传和回忆录，争着介绍它的花边新闻也该有吧。 后来找到仅有的一两本书籍，也直接深入到“源码剖析”的阶段。写得并不十分满意，况且我还不需要这些。后来发现了原因，大概是因为“使用太简单了，都不值得出书”。是的，Nginx把纷繁复杂的功能，浓缩成一份简单的">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx能为前端开发带来什么？">
-<meta property="og:url" content="https://theone.org.cn/2015/11/03/nginx-in-fe/index.html">
+<meta property="og:url" content="//theone.org.cn/2015/11/03/nginx-in-fe/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="Nginx那么好，我想去看看。接连逛了两个书城后，我发现并没有Nginx相关的书籍。这就很奇怪！  Nginx，一名网红（网络服务器红人…），就算没有自传和回忆录，争着介绍它的花边新闻也该有吧。 后来找到仅有的一两本书籍，也直接深入到“源码剖析”的阶段。写得并不十分满意，况且我还不需要这些。后来发现了原因，大概是因为“使用太简单了，都不值得出书”。是的，Nginx把纷繁复杂的功能，浓缩成一份简单的">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/nginx0.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/nginx1.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/nginx2.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/nginx0.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/nginx1.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/nginx2.jpg">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx能为前端开发带来什么？">
 <meta name="twitter:description" content="Nginx那么好，我想去看看。接连逛了两个书城后，我发现并没有Nginx相关的书籍。这就很奇怪！  Nginx，一名网红（网络服务器红人…），就算没有自传和回忆录，争着介绍它的花边新闻也该有吧。 后来找到仅有的一两本书籍，也直接深入到“源码剖析”的阶段。写得并不十分满意，况且我还不需要这些。后来发现了原因，大概是因为“使用太简单了，都不值得出书”。是的，Nginx把纷繁复杂的功能，浓缩成一份简单的">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/nginx0.jpg">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/nginx0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -184,6 +184,28 @@ var _hmt = _hmt || [];
         <a href="/2015/11/03/nginx-in-fe/" class="archive-article-date">
   	<time datetime="2015-11-03T13:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-03</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -387,7 +409,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS27DMAwFwNz/0uk2ReH4UbQKmB6tiqSONVoQ4uf1itf7Y31+8vfbo3X0a0e/89qxMDAwbstIXp+84PumE0D1gDAwMJ7GONpW539OXlwM6yd7xsDAwIiDZhKmEzwGBgbGDkY1mGJgYGBUGUkSe215rlqAuywXx8DAuCEj39b//72lv4GBgXErxru4OtvKmwrlXWFgYIxm5AEuGZvob7q1HwwMjKGMtWGvDm/tCE4+wcDAGM1IQuG+SH9tsxMDA2M2IynTJ7BqA3INFlUEMTAwBjGS1+zbdGdvGBgYGJ2wmHybBPH8goiBgTGb0Rl0WBvYWhuwiJJnDAyM0Yy1olv/innVIWJgYMxmXNWYrAbcvMEZJcMYGBijGfnWO+nr9xfnBbtyDxYDA2MEo9X5bBzEVeBfV0MMDIyhjGriml/pqge0Nmq2mH9jYGDcipEHuP7VsBo6k89Pym0YGBgjGNV4tXax2xGsTy6FGBgYoxl58E2oaw2GvPR2GHAxMDCGMtZq7MnYRJKO9ofMMDAwnsOIHigW6ar1sbWqGgYGxlTGu7iqqe9VgxqFOREMDIxxjN2DFGtNyvy6WYZhYGDclpEE2Tw45idUblJ+fxYDA+MBjEIJfimAdhoPhWELDAwMjJhUbVVWnz0sumFgYGAEgTJJdKtty+jgMDAwHsBIktgdIxRVAAYGxjMZeepYbUZWhzOS8NpqamJgYNyP8QP86ZNhBBe/BgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHElEQVR42u3a24rCMBQFUP//pzuvglj2PtEBk5WnQW2blYHDufTxiNf1tJ4/mf3+elmv1z6+sTAwMH6Wcd2ud9tqHzyDJXvDwMA4h3G/uXtSDp4dX3RwGBgYGGUQbGH312JgYGC0jPtPktDcHgEGBgbGyq0/G1j/qRbHwMD4QUbedf//v78y38DAwPgpxlWue1ibGrbl8dtdYWBgbM2YDSBXStAkvZsNRDEwMHZl5Df9VPHZJoVJuMfAwNibkW8rv3WeRObHFA0nMDAwNmW0g8kksLaJYA6O/g8YGBjbMfIg2I4h2xCcl7JvjwMDA+MAxixNzNn3KeAs7GJgYJzDmD0yhyXlbp50Rq9lYGBgbMTIG/rrQXNlRFqMMDEwMLZjtIPDdqiZp5Kzxt8jvwADA+NnGStJWxJwVzaa/BIDA+McxqzF1q5ZmC5etsDAwNiaMbtR2xrLm3ptAYyBgbE3oy1c71tjsyHByk4wMDBOYyTlYjKYXC+J25doMTAwTmC0o8qc8amEMgq+GBgYBzDyZC5/5MoBtUNQDAyMExj5xbNvZ425vLjFwMDYlXGVq93i7FXUPDRjYGCcwJhNBpOmWD4oXR+aYmBgnMBoS81vn9wwfcTAwDiAkW8xv3YWgmdIDAwMjJzUjhlm8fNt0w0DAwOjTCWTbxNA1MLDwMA4gPGpB7fXrieIGBgYJzDaRC0fN85K3PXSGgMDYyPGH9ujIuCImrUoAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -598,11 +620,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,10 +637,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,19 +656,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,11 +704,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

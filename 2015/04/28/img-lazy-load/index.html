@@ -5,23 +5,23 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>说到加载图片，我们可以谈些什么 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="其实，一开始让我在网页中加载一张图片，我是，是拒绝的…因为实在太简单了。 &amp;lt;img src=&amp;quot;xx.jpg&amp;quot; /&amp;gt;是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。 最近实现了个图片加载器，用于大型web前端项目中，关于加载图片这一话题，仔细想来可以加许多的特技。">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="说到加载图片，我们可以谈些什么">
-<meta property="og:url" content="https://theone.org.cn/2015/04/28/img-lazy-load/index.html">
+<meta property="og:url" content="//theone.org.cn/2015/04/28/img-lazy-load/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="其实，一开始让我在网页中加载一张图片，我是，是拒绝的…因为实在太简单了。 &amp;lt;img src=&amp;quot;xx.jpg&amp;quot; /&amp;gt;是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。 最近实现了个图片加载器，用于大型web前端项目中，关于加载图片这一话题，仔细想来可以加许多的特技。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/lazyload.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/lazyload.jpg">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="说到加载图片，我们可以谈些什么">
 <meta name="twitter:description" content="其实，一开始让我在网页中加载一张图片，我是，是拒绝的…因为实在太简单了。 &amp;lt;img src=&amp;quot;xx.jpg&amp;quot; /&amp;gt;是每个前端开发都会的技能。然而，如果你想做到极致，事情还没有这么简单。 最近实现了个图片加载器，用于大型web前端项目中，关于加载图片这一话题，仔细想来可以加许多的特技。">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/lazyload.jpg">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/lazyload.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -182,6 +182,28 @@ var _hmt = _hmt || [];
         <a href="/2015/04/28/img-lazy-load/" class="archive-article-date">
   	<time datetime="2015-04-28T15:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-04-28</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -339,7 +361,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS27DMAwFwNz/0um2QGrnkbQLWBqtAsOVNV0Q4uf1itf71/p8kqzP3Y5+f75/2cLAwHgsI/l8/vz8WPmT/GwYGBj7MI4i2NE70dbFMHpO+nJmDAwMjGJAPAckbAwMDIyrAu4kDU6SWAwMDIxqEpt/LNnh/Aw35uIYGBgPZOTh8v9/39LfwMDAeBTjqjbkVY3Jd2thYGCszcgDXDW9PN+z+g+KvoKBgbElo1ronzcje8EdAwNjH0Z+mbvvzbzk98cTDAyMbRiTAdPeqMQ89cXAwFib0WsK9sa8JmG9PGaBgYGxNCMZd8gTznx4Ih/CwMDA2JMxGaqojkf0Biy+BF8MDIylGXlIrQ5M5IW8XjvzsIWJgYGxHOP8j6uXtl5pr5cqf+lsYGBgLM3IQ2E1Tb1qIKPQg8XAwFiIMbnSVa931aJedOnEwMBYmnHtwMRkbKKXKmNgYOzGmJT1rwrBzXohBgbGBox8/KJaXKuOa+SJLgYGxm6MJNhVn/QKbZO0FgMDYwfGeVjMh7fycn8e6JtxHQMDYzlGbxiil2rOr5gYGBj7MN7F1Ru2mDQSosCNgYGxNGNeMutd/qrN0V5bFAMDYyVGEmSrAXdy1SsX2jAwMLZhVEcroq0nx6qGfgwMDIz483ljMg+7twdcDAyMpRk9WLVtGbUuMDAwNmAkSWyvQJbvnI96YGBg7MaohtFes7PanrylqYmBgfE8xg9CCtsZV/GrKgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQXKDQAwEwPz/0841hwAzWpIqlubkctmB9mEirfT1FV+fgyv5/M93zl8fvXPbhYGB8VjG5/Q6eqz2luf45L4XPyIGBsYLGEd/OnncBDyL8uTZMDAwMJLXSSF4FNZ5EYmBgYHRBm5SPualXtL6YmBgYLQl2qytnQX3zb04BgbGAxl5q/n/r/9kvoGBgfEoxqe8kqBcKRaHT4WBgbE1Iw+4ds0iKShXAhcDA+M9jDZG22WvvDVdapUxMDBewMgHA0nUtmXfSnP7S4WLgYGxHSN53FngJqGZ/xBJGYqBgbErozjMWljwOg/KFn/YhWNgYLyA0bayKxPGPF6jCMbAwNiakS9YnL+fN6vr7W6+goaBgbEr4+JIKz6Sm0Xk+sAAAwNjP0Y7qmwjtdj4KGN92ItjYGA8kFFvkC2PM9sSc/ZvAAMDYz/GbNmifdD2aG9p2QIDA2Mjxmxsee/6RQKre18MDIyNGPkNZhE8az5vm2lgYGBsxJjdeGVVIg/Z4jgPAwPjNYzZgX7bys4Glhf3wsDAeAEjGV4m0Zy0u/lnivYYAwPjNYxZ7M4a1PYo7eJbGBgYmzI+5TVrX2fNcBG4GBgYWzPumgmuL220LetwwImBgfFYxkoDORsGzH4yDAwMjCQo2zHkbGljqZXFwMDAWF7zah8XAwMD467AbWO3bYaTAhQDA+MNjLuGAbPi74YCEQMDY2vGrFBrD93WxwztUggGBsYWjG8pt0HPKzfoowAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -550,11 +572,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,10 +589,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,19 +608,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -634,11 +656,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

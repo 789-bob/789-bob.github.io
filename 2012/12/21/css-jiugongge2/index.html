@@ -5,25 +5,25 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>css实现九宫格(二) | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="书接上回，上回在这。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）        题目的关键是解决“公用边”，上次我主要做了两个方面的尝试：  用负margin使元素的border叠加用table的border-collapse实现边框合并  这一次的思路则更加简明，也是个人认为是更好的方法。感谢队长提供的思路。">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css实现九宫格(二)">
-<meta property="og:url" content="https://theone.org.cn/2012/12/21/css-jiugongge2/index.html">
+<meta property="og:url" content="//theone.org.cn/2012/12/21/css-jiugongge2/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="书接上回，上回在这。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）        题目的关键是解决“公用边”，上次我主要做了两个方面的尝试：  用负margin使元素的border叠加用table的border-collapse实现边框合并  这一次的思路则更加简明，也是个人认为是更好的方法。感谢队长提供的思路。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge1.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge10.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge9.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge1.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge10.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge9.jpg">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css实现九宫格(二)">
 <meta name="twitter:description" content="书接上回，上回在这。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）        题目的关键是解决“公用边”，上次我主要做了两个方面的尝试：  用负margin使元素的border叠加用table的border-collapse实现边框合并  这一次的思路则更加简明，也是个人认为是更好的方法。感谢队长提供的思路。">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/jiugongge1.jpg">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/jiugongge1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -184,6 +184,28 @@ var _hmt = _hmt || [];
         <a href="/2012/12/21/css-jiugongge2/" class="archive-article-date">
   	<time datetime="2012-12-21T05:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-12-21</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">955字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -332,7 +354,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3aMZLEIAwFUd//0rPpBgvTX+CtArWjCWys50AjgZ4HXx98/b5//nu+/vPGJUOGjGMZaVijFUZrkkDn7HlsMmTI6MOYBzdamry4ljN5bDJkyJBBUuquwjEtJWXIkCGDl2hpiLVULkOGDBkkuDfa2nlB+UovLkOGjAMZvL38/9+vnG/IkCHjKEatBeUlXW3NOCoZMmRczagdYaaNa1qGzgvKYQEqQ4aMSxm8jSQjXCSN8jsDngwZMq5m8KGHdQbZ6F857JQhQ0ZPBkmC6Yb+Onhpj1CGDBkHMvihYNATbz1sQK2vDBky2jBWhipqgxT8c3x5VoYMGVcz0ldyZLpZxlP28CkZMmQ0ZtSGJNKjgtoHjTtvGTJkHMhAJRe+c1dLHKdyGTJktGHUBrbIK8kmGr/nS8KVIUPGdQweBNmmX69Sg6DTcGXIkHEso3YwwF+fzkiQBviPSGTIkNGAQQC1EPmmG0+yw2ELGTJkXMrg4xT8d3pnDSZDhozOjHSjbRdpXhqijyJDhowGjLgUKxVwtaGNDeexMmTIOJxRKwrXt/V50CubejJkyDid8QmvNAhS3vHydEiVIUPG1YzacSNftHbYUGt6ZciQcTeDJNk0vRLMrlQuQ4aMPozawMTKdn/tHyAetpAhQ0ZLBtlQ401pbc2HnKzKkCGjMSN9dn0sA6VmGTJkNGDwJjZNi7xZrR0eyJAhowMjHbxY2fTf27jKkCGjAeMH+muOdF3NfAUAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3awa7CQAgFUP//p32btzPVC1ST0jMro7ad0wWBgccjXs+X9frr6z+P7nB0/9fPJy8MDIzLMp5vV/KY3rVH+PffH74ODAyMGzDyIJg/Pgm1+X0+7BkDAwOjuPXk/tVXhoGBgZHcelKgJuwfBVwMDIzLMpJC9P33k3D501ocAwPjgoz81P33n7/S38DAwLgU41lck8Tx/dN7+/m/FgMDYzWj18KcjGX0itUoxcTAwFjNSDb0jfZAEsTzhBUDA+MOjN7ARDJCkad91aCMgYFxB0ZemubJXx40e02FRzWWY2BgXJwxitCttkGSUOZXYWBg3IExSdGSQNwbzqiOnWFgYNyBMT+IPzcc58d5H4pYDAyMRYxJKVstR/OtF475MDAwVjMmoXNS7k7K5g9pIgYGxmpGteCsntXnwxOjgIuBgbGOMTkIqx7x52EXAwMD46gD2GtnThqW5dI0nxzBwMBYxOgNQ0xaj3m6WfgeAwNjNSM5xqoWn9WVF73Ji8PAwNjKmATByYby4J4kphgYGHdm5OFvQp3zMDAwdjMmiWCeICZl82ltUQwMjEWMXsFZ/Wfezmw2RzEwMFYzzh3wSorP6n2qCSsGBsZWRjXIJk3NSRvyhFocAwNjKaM3LtYbsOgVzx9CPwYGBsZ49RLEvM2AgYGBkQ9PTFoIvUQTAwPjPoxJM6A68lVNNKNwjIGBsZpRnbPqNR2rqWF1fA0DA2Mp4w8xYK1jjFK6gwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -543,11 +565,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,10 +582,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,19 +601,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,11 +649,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

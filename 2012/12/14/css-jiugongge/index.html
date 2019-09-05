@@ -5,29 +5,29 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>css实现九宫格(一) | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前段时间，我的 leader Henry在群里面分享了一道一淘的面试题。         题目非常的有趣，忙完前阵的工作之后突然记起，也尝试做了一下。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css实现九宫格(一)">
-<meta property="og:url" content="https://theone.org.cn/2012/12/14/css-jiugongge/index.html">
+<meta property="og:url" content="//theone.org.cn/2012/12/14/css-jiugongge/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="前段时间，我的 leader Henry在群里面分享了一道一淘的面试题。         题目非常的有趣，忙完前阵的工作之后突然记起，也尝试做了一下。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge1.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge2.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge3.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge4.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge5.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge6.jpg">
-<meta property="og:image" content="https://theone.org.cn/assets/blogImg/jiugongge7.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge1.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge2.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge3.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge4.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge5.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge6.jpg">
+<meta property="og:image" content="//theone.org.cn/assets/blogImg/jiugongge7.jpg">
 <meta property="og:updated_time" content="2017-07-28T18:51:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css实现九宫格(一)">
 <meta name="twitter:description" content="前段时间，我的 leader Henry在群里面分享了一道一淘的面试题。         题目非常的有趣，忙完前阵的工作之后突然记起，也尝试做了一下。  9个元素，每个50*50px，排成九宫格默认是border颜色为blue，hover到格子上变成red（兼容到IE6）">
-<meta name="twitter:image" content="https://theone.org.cn/assets/blogImg/jiugongge1.jpg">
+<meta name="twitter:image" content="//theone.org.cn/assets/blogImg/jiugongge1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="叶双全的博客" type="application/atom+xml">
   
@@ -188,6 +188,28 @@ var _hmt = _hmt || [];
         <a href="/2012/12/14/css-jiugongge/" class="archive-article-date">
   	<time datetime="2012-12-14T11:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-12-14</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.9k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -353,7 +375,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7DMAwEwPz/0ynQaxpnl3IKWB6djNaRNToQlMjHIx7P35H85d1499vX59f3TxsYGBiXZSSfT6Y+XlCyxONfHW8NBgbGHRj5smaLy8Nrsn0YGBgY+XQz5DEeAwMD49yAm6d3szQUAwMDo506D5Rn3Yl95SyOgYFxQUZbGPjP5y/WNzAwMC7CeJYjn619Mw+yf6wKAwNja0beSJEkiO3iZhd2b7cJAwNja0be6HAcEHNS3qLRbjQGBsZ+jDYF/EZhoP1KcV+IgYGxBSP/cN480b6zkmJiYGDch7Hy4zaA5gsaFkoxMDC2Y+SHzLZgkC86Obh+eMbAwNia0V6E5Utsr9vaoByVMDEwMDZirJQHzgK3DWEYGBj3YbRHyiSM5huxniBiYGDcgZFPtBI025Caz/Zo9wMDA+PijLqSsLCs2aG3KGRiYGBsxMiTvLNI7V5GKSYGBsbWjHzqtuUrL4LOCqX1IRYDA+PijNnU7bFzpfAZFUQxMDA2ZSTLOutqrL4mW6m7YmBgbMdoE7hZs0Xe8lUXLzEwMLZmnNswMTsSz4Jv9A8MDIwtGM9yrOBniWCUbmJgYGzNmIW5ZKLZMbhNCjEwMO7DaI+vJ7REBJd9+QwYGBj3YeSLW0kH28NwkRRiYGBglM1e600VdRDHwMDAWLhEawucybH2Qz0WAwNjU8YsaOZFgvXtiJotMDAwNmXMguYsvVu5+l/fAgwMjAsyfgDvUyLgcbyVNgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3a24rCQBAFQP//p13YpwUxnjMdZZ1UnkKMZipC05e53eLj/nv8PX+88nj/s3uS797ecWBgYHwt4354tA9LAI/3JK/sxXcxMDAuwPhMkE1Ix095eh0DAwOjDKDHAAwMDIx3B9zj0JlfactdDAwMjHahk4RvUvSeUItjYGB8IWNtMPCZ87fPNzAwMP49414ebVE6abcVq8LAwNiaMRlP5iVu27BrBxIYGBh7Mybh9azFtWPR0YYwDAyMjRiTarEdDLRbV4uAi4GBsQUjSRATZL64s4aadZ6LgYGxBSP56byUbX+tXUn0n2BgYGzHmG93yENziy+GnRgYGFszJq3/fOnnlrsYGBjXZCRFY97Qb7d5rTX+MDAw9mbkad+kJRe9ufJ1YGBgXIcxTwfb8Hq80NH9GBgYmzLOCpGTRtsJCSgGBsbWjHYMsNZWa3lJGoqBgXEdRlJ8Juljfn8+zszXhoGBsTdjrYzMW/lrGyna14eBgbE3Y+3xa1sl8pBd/AMYGBiXYRzflIfjfFTQbqd4kWhiYGBszchb8O3j5xu/6qdjYGBsyriXR77c/HXkSeTTTzEwMLZmtMGuPc9L3/xZUVmLgYGxHSMJsm2LLV90Ho5f/CYGBsYFGEnga8vXedOtSEYxMDAwyrHBu7eFYWBgYLQjyTkgD9wnpIYYGBhfy2gbZG0Pby3RTLamYWBgXIFxQgEZh9F5srhWAGNgYHwt4wfh4/Au3FQYXgAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -564,11 +586,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,10 +603,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,19 +622,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,11 +670,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">

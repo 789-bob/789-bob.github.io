@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://theone.org.cn">
+  <link rel="dns-prefetch" href="//theone.org.cn">
   <title>统一处理异步的js回调 | 叶双全的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js编程时经常会用到异步处理，而异步会带了所谓的并发问题。比如，你需要向服务器发出多个ajax请求，然后在返回所有结果后做进一步处理，同时要显示动画。因此我们需要用到以下的方案。">
 <meta name="keywords" content="js,web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统一处理异步的js回调">
-<meta property="og:url" content="https://theone.org.cn/2013/10/06/handling-asynchronous-js/index.html">
+<meta property="og:url" content="//theone.org.cn/2013/10/06/handling-asynchronous-js/index.html">
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="js编程时经常会用到异步处理，而异步会带了所谓的并发问题。比如，你需要向服务器发出多个ajax请求，然后在返回所有结果后做进一步处理，同时要显示动画。因此我们需要用到以下的方案。">
 <meta property="og:locale" content="default">
@@ -180,6 +180,28 @@ var _hmt = _hmt || [];
         <a href="/2013/10/06/handling-asynchronous-js/" class="archive-article-date">
   	<time datetime="2013-10-06T02:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-10-06</time>
 </a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">408字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
         
       </header>
     
@@ -316,7 +338,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS27DMAwFwNz/0um2RRDnkVQKWBqvAjetNV6w/D0e8fV8uX7fv/5m8p3X+49vXBgYGLdlPC+v6wdcP7L3l9/99PrVYGBgnMB4d4j8c3KIPGbmZ8PAwMAYBcHLp1ynjBgYGBirAu4kNF+/IAwMDIxeqZmHziTtqzbgltXiGBgYN2TkXff///yV+QYGBsatGM/iNSlK88OVT4WBgbE1o5fY9crOfCGjmWhiYGBszcjDaLXQzZfDqisdH6gYGBgbMaoPqP7WZCxaaPNhYGBszei17POUrnq45GUtmzxgYGDcijEfDMxhveUMDAyMExhJkpfXwb37SfOusC2CgYGxHWMSiasLXtUBQ/66MTAwTmP0Gm15ydorocuTWAwMjAMY+Tiz1ybLy908lGNgYJzAyAeK1RFCXuLmYRcDA+McxryMXDUE7S1q/NkZwcDA2JRRTcXy5YlJspi0/wrjAQwMjI0Y1SKzl1ZOitg8lcTAwNiPUU3aqqtda5ctolocAwNjU0ay1pCHxfk4odyGw8DAOIAxaYf1DtErmBf838DAwLgto7pskR+iOkhotuQwMDA2ZfRCbRIKJ+226roGBgbG3oxlMbtV0CZ38heBgYGxN6O3TtEbZPaWPKLkEgMD4wBGbzujip+nfR9KWQwMDIxiSrcq7EYJKAYGBsagPk541RbegoCLgYFxQ0Y+DEja95OUMekLYmBgnMbIS8dqKy0vQZPEccFQEwMD436MH0pj+gio4I1JAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aSXLCQAwFUO5/aecAhOZLCqHc/byimNzPC5WmxyO+rvhaf//Vp8/3enziwsDAuC2jd6znW7461qsj5v+/PhsGBsY5jOotq6/Xd0ke05szY2BgYAyCYy/4YmBgYEwY1UMnoXb9DgYGBkZexFZJ61ba12pxDAyMGzLyrvv/v/7IfAMDA+NWjKt4rWHzYN08FQYGxtaMPMDlixEJvlf0vjkPBgbGpoykvVUNl0njbBKOf/kmBgbG1oxeKZv/xST1zJEYGBjnMHrJX6/dnz+mfPyJgYFxAqM6Hph/Wk1D/wCAgYFxQ0aykpUcLlmVyMNrOWRjYGAcwOg16PO0r5pElkcIGBgYWzN66WAeWHvZaDXQY2BgnMPIR4n5utikrdZb1MDAwDiHsf5ZL6XrjRzKM1gMDIztGPNWfjUFrD6s6EFgYGBszcibYnnzKy9u85S0OWXFwMDYglENcPlve4+jOQzAwMDYmpEAJq97iWNzBQQDA+MARnWFIj9QEnZ7gThaY8XAwNiIUS1iq2G6V/oWGoIYGBgHMJLWf6+J1lu2yIM4BgbG3oyreFVJ83FCVCpjYGBszZgXpZNQOxlwNstsDAyM2zKqQba3zpWPJJsBFwMD4wBGvig2WQibFLFRnouBgYHRasAVmvvJ+tfkjzAwMI5hVFclJkOIQkDHwMA4gJEUsZMljGpymbf/MDAwTmD0Ssc8HJe3P4phFwMDY2vGD9X3vCoWbVxwAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -527,11 +549,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
+                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,10 +566,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,19 +585,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -611,11 +633,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">故事</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
+                <a href="javascript:void(0)" class="js-tag color3">模式</a>
               </li>
              
               <li class="article-tag-list-item">
