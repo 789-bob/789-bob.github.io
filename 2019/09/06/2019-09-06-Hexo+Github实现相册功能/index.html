@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="叶双全的博客">
 <meta property="og:description" content="最终效果请看这里：http://theone.org.cn/photos/   一.说明1.关于  我使用的主题是hexo-theme-yilia，其中instagram被禁了,下面用自己的方式实现了相册功能  2.方案  在github上新建一个仓库，主要用于存储图片，可以通过url访问到，也方便管理 将要放到相册的图片处理成json格式的数据，然后进行访问，这里json的格式需要配合要使用的">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-06T19:14:14.130Z">
+<meta property="og:updated_time" content="2019-09-06T19:23:41.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo+Github实现相册功能">
 <meta name="twitter:description" content="最终效果请看这里：http://theone.org.cn/photos/   一.说明1.关于  我使用的主题是hexo-theme-yilia，其中instagram被禁了,下面用自己的方式实现了相册功能  2.方案  在github上新建一个仓库，主要用于存储图片，可以通过url访问到，也方便管理 将要放到相册的图片处理成json格式的数据，然后进行访问，这里json的格式需要配合要使用的">
@@ -187,7 +187,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">871字</span>
+        <span class="post-count">1.1k字</span>
       </span>
     </span>
 
@@ -196,7 +196,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -247,12 +247,12 @@ var _hmt = _hmt || [];
 <li>去图片的中间部分，裁剪为<strong>正方形</strong></li>
 <li>对应的裁剪函数</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">def cut_by_ratio(self):  </span><br><span class="line">    <span class="string">""</span><span class="string">"按照图片长宽进行分割</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    ------------</span></span><br><span class="line"><span class="string">    取中间的部分，裁剪成正方形</span></span><br><span class="line"><span class="string">    "</span><span class="string">""</span>  </span><br><span class="line">    im = Image.open(self.infile)  </span><br><span class="line">    (<span class="keyword">x</span>, <span class="keyword">y</span>) = im.size  </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">x</span> &gt; <span class="keyword">y</span>:  </span><br><span class="line">        region = (<span class="keyword">int</span>(<span class="keyword">x</span>/<span class="number">2</span>-<span class="regexp">y/2), 0, int(x/2+y/</span><span class="number">2</span>), <span class="keyword">y</span>)  </span><br><span class="line">        <span class="comment">#裁切图片  </span></span><br><span class="line">        crop_img = im.crop(region)  </span><br><span class="line">        <span class="comment">#保存裁切后的图片  </span></span><br><span class="line">        crop_img.save(self.outfile)             </span><br><span class="line">    elif <span class="keyword">x</span> &lt; <span class="keyword">y</span>:  </span><br><span class="line">        region = (<span class="number">0</span>, <span class="keyword">int</span>(<span class="regexp">y/2-x/2), x, int(y/</span><span class="number">2</span>+<span class="keyword">x</span>/<span class="number">2</span>))</span><br><span class="line">        <span class="comment">#裁切图片  </span></span><br><span class="line">        crop_img = im.crop(region)  </span><br><span class="line">        <span class="comment">#保存裁切后的图片  </span></span><br><span class="line">        crop_img.save(self.outfile)</span><br></pre></td></tr></table></figure>
 <p><strong>(2)压缩图片</strong></p>
 <ul>
 <li>把图片进行压缩，方便相册的加载 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compress</span><span class="params">(choose, des_dir, src_dir, file_list)</span>:</span></span><br><span class="line">    <span class="string">"""压缩算法，img.thumbnail对图片进行压缩，</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    参数</span></span><br><span class="line"><span class="string">    -----------</span></span><br><span class="line"><span class="string">    choose: str</span></span><br><span class="line"><span class="string">            选择压缩的比例，有4个选项，越大压缩后的图片越小</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> choose == <span class="string">'1'</span>:</span><br><span class="line">        scale = SIZE_normal</span><br><span class="line">    <span class="keyword">if</span> choose == <span class="string">'2'</span>:</span><br><span class="line">        scale = SIZE_small</span><br><span class="line">    <span class="keyword">if</span> choose == <span class="string">'3'</span>:</span><br><span class="line">        scale = SIZE_more_small</span><br><span class="line">    <span class="keyword">if</span> choose == <span class="string">'4'</span>:</span><br><span class="line">        scale = SIZE_more_small_small</span><br><span class="line">    <span class="keyword">for</span> infile <span class="keyword">in</span> file_list:</span><br><span class="line">        img = Image.open(src_dir+infile)</span><br><span class="line">        <span class="comment"># size_of_file = os.path.getsize(infile)</span></span><br><span class="line">        w, h = img.size</span><br><span class="line">        img.thumbnail((int(w/scale), int(h/scale)))</span><br><span class="line">        img.save(des_dir + infile)</span><br></pre></td></tr></table></figure>
 <p><strong>4.GitHub提交</strong></p>
 <p><strong>5.json数据处理</strong></p>
 <ul>
