@@ -166,6 +166,161 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2019-09-06-Hexo+Github实现相册功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/2019-09-06-Hexo+Github实现相册功能/">Hexo+Github实现相册功能</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/2019-09-06-Hexo+Github实现相册功能/" class="archive-article-date">
+  	<time datetime="2019-09-06T11:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+		 <!-- 开始添加字数统计-->
+          
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">871字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>最终效果请看这里：<a href="http://theone.org.cn/photos/" target="_blank" rel="noopener">http://theone.org.cn/photos/</a> </li>
+</ul>
+<h3 id="一-说明"><a href="#一-说明" class="headerlink" title="一.说明"></a>一.说明</h3><p><strong>1.关于</strong></p>
+<ul>
+<li>我使用的主题是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">hexo-theme-yilia</a>，其中<code>instagram</code>被禁了,下面用自己的方式实现了相册功能</li>
+</ul>
+<p><strong>2.方案</strong></p>
+<ul>
+<li>在<code>github</code>上<strong>新建一个仓库</strong>，主要用于存储图片，可以通过<code>url</code>访问到，也方便管理</li>
+<li>将要放到相册的图片处理成<code>json</code>格式的数据，然后进行访问，这里<code>json</code>的格式需要配合要使用的样式，所以需要处理成<strong>特定格式</strong>的<code>json</code>数据，下面会给出</li>
+<li><strong>图片裁剪</strong>，因为相册显示的样式最好是<strong>正方形</strong>的的图片，这里使用脚本处理一下</li>
+<li><strong>图片压缩</strong>，相册显示的图片是压缩后的图片，提高加载的速度，打开后的图片是原图。</li>
+</ul>
+<h3 id="二-实现"><a href="#二-实现" class="headerlink" title="二.实现"></a>二.实现</h3><p><strong>1.GitHub操作</strong></p>
+<blockquote>
+<p>建立一个用于存储相册的仓库，我这里建立了名为<code>Blog-Back-Up</code>的仓库</p>
+</blockquote>
+<p><strong>2.博客操作</strong></p>
+<ul>
+<li><p>在<strong>博客</strong>的<code>source</code>文件夹下建立一个<code>photos</code>文件夹</p>
+</li>
+<li><p>将样式文件放到<code>photos</code>文件夹下，样式文件我都放到了<code>github</code>上：</p>
+<p><a href="https://github.com/789-bob/Blog-Back-Up/tree/master/blog_photos_copy" target="_blank" rel="noopener">https://github.com/789-bob/Blog-Back-Up/tree/master/blog_photos_copy</a> </p>
+</li>
+<li><p>修改<code>ins.js</code>文件，主要是里面的<code>render</code>函数</p>
+</li>
+<li><p>其中的<code>url</code>对应到你的<code>github</code>放图片的地址 </p>
+</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> render = function render(res) &#123;</span><br><span class="line">      <span class="keyword">var</span> ulTmpl = <span class="string">""</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>, len2 = res.list.length; j &lt; len2; j++) &#123;</span><br><span class="line">        <span class="keyword">var</span> data = res.list[j].arr;</span><br><span class="line">        <span class="keyword">var</span> liTmpl = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = data.link.length; i &lt; len; i++) &#123;</span><br><span class="line">          <span class="keyword">var</span> minSrc = <span class="symbol">'https</span>:<span class="comment">//raw.githubusercontent.com/789-bob/Blog-Back-Up/master/min_photos/' + data.link[i];</span></span><br><span class="line">          <span class="keyword">var</span> src = <span class="symbol">'https</span>:<span class="comment">//raw.githubusercontent.com/789-bob/Blog-Back-Up/master/photos/' + data.link[i];</span></span><br><span class="line">          <span class="keyword">var</span> <span class="class"><span class="keyword">type</span> </span>= data.<span class="keyword">type</span>[i];</span><br><span class="line">          <span class="keyword">var</span> target = src + (<span class="class"><span class="keyword">type</span> <span class="title">===</span> '<span class="title">video</span>' <span class="title">?</span> '.<span class="title">mp4</span>' </span>: '.jpg');</span><br><span class="line">          src += '';</span><br><span class="line"></span><br><span class="line">          liTmpl += '&lt;figure <span class="class"><span class="keyword">class</span></span>=<span class="string">"thumb"</span> itemprop=<span class="string">"associatedMedia"</span> itemscope=<span class="string">""</span> itemtype=<span class="string">"http://schema.org/ImageObject"</span>&gt;\</span><br><span class="line">                &lt;a href=<span class="string">"' + src + '"</span> itemprop=<span class="string">"contentUrl"</span> data-size=<span class="string">"1080x1080"</span> data-<span class="class"><span class="keyword">type</span></span>=<span class="string">"' + type + '"</span> data-target=<span class="string">"' + src + '"</span>&gt;\</span><br><span class="line">                  &lt;img <span class="class"><span class="keyword">class</span></span>=<span class="string">"reward-img"</span> data-<span class="class"><span class="keyword">type</span></span>=<span class="string">"' + type + '"</span> data-src=<span class="string">"' + minSrc + '"</span> src=<span class="string">"/assets/img/empty.png"</span> itemprop=<span class="string">"thumbnail"</span> onload=<span class="string">"lzld(this)"</span>&gt;\</span><br><span class="line">                &lt;/a&gt;\</span><br><span class="line">                &lt;figcaption style=<span class="string">"display:none"</span> itemprop=<span class="string">"caption description"</span>&gt;' + data.text[i] + '&lt;/figcaption&gt;\</span><br><span class="line">            &lt;/figure&gt;';</span><br><span class="line">        &#125;</span><br><span class="line">        ulTmpl = ulTmpl + '&lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"archives album"</span>&gt;&lt;h1 <span class="class"><span class="keyword">class</span></span>=<span class="string">"year"</span>&gt;' + data.year + '年&lt;em&gt;' + data.month + '月&lt;/em&gt;&lt;/h1&gt;\</span><br><span class="line">        &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-box-ul"</span>&gt;' + liTmpl + '&lt;/ul&gt;\</span><br><span class="line">        &lt;/section&gt;';</span><br><span class="line">      &#125;</span><br><span class="line">      document.querySelector('.instagram').innerHTML = '&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"photos"</span> itemscope=<span class="string">""</span> itemtype=<span class="string">"http://schema.org/ImageGallery"</span>&gt;' + ulTmpl + '&lt;/div&gt;';</span><br><span class="line">      createVideoIncon();</span><br><span class="line">      _view2.<span class="keyword">default</span>.init();</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3.图片处理</strong></p>
+<ul>
+<li>我的博客相关文件: <a href="https://github.com/789-bob/Blog-Back-Up" target="_blank" rel="noopener">https://github.com/789-bob/Blog-Back-Up</a> </li>
+</ul>
+<p><strong>(1)裁剪图片</strong></p>
+<ul>
+<li>去图片的中间部分，裁剪为<strong>正方形</strong></li>
+<li>对应的裁剪函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>(2)压缩图片</strong></p>
+<ul>
+<li>把图片进行压缩，方便相册的加载 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>4.GitHub提交</strong></p>
+<p><strong>5.json数据处理</strong></p>
+<ul>
+<li>实现代码:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_photo</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''根据图片的文件名处理成需要的json格式的数据</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    -----------</span></span><br><span class="line"><span class="string">    最后将data.json文件存到博客的source/photos文件夹下</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    src_dir, des_dir = <span class="string">"photos/"</span>, <span class="string">"min_photos/"</span></span><br><span class="line">    file_list = list_img_file(src_dir)</span><br><span class="line">    list_info = []</span><br><span class="line">    file_list.sort(key=<span class="keyword">lambda</span> x: x.split(<span class="string">'_'</span>)[<span class="number">0</span>])   <span class="comment"># 按照日期排序</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(file_list)):</span><br><span class="line">        filename = file_list[i]</span><br><span class="line">        date_str, info = filename.split(<span class="string">"_"</span>)</span><br><span class="line">        info, _ = info.split(<span class="string">"."</span>)</span><br><span class="line">        date = datetime.strptime(date_str, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line">        year_month = date_str[<span class="number">0</span>:<span class="number">7</span>]            </span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:  <span class="comment"># 处理第一个文件</span></span><br><span class="line">            new_dict = &#123;<span class="string">"date"</span>: year_month, <span class="string">"arr"</span>:&#123;<span class="string">'year'</span>: date.year,</span><br><span class="line">                                                                   <span class="string">'month'</span>: date.month,</span><br><span class="line">                                                                   <span class="string">'link'</span>: [filename],</span><br><span class="line">                                                                   <span class="string">'text'</span>: [info],</span><br><span class="line">                                                                   <span class="string">'type'</span>: [<span class="string">'image'</span>]</span><br><span class="line">                                                                   &#125;</span><br><span class="line">                                        &#125; </span><br><span class="line">            list_info.append(new_dict)</span><br><span class="line">        <span class="keyword">elif</span> year_month != list_info[<span class="number">-1</span>][<span class="string">'date'</span>]:  <span class="comment"># 不是最后的一个日期，就新建一个dict</span></span><br><span class="line">            new_dict = &#123;<span class="string">"date"</span>: year_month, <span class="string">"arr"</span>:&#123;<span class="string">'year'</span>: date.year,</span><br><span class="line">                                                   <span class="string">'month'</span>: date.month,</span><br><span class="line">                                                   <span class="string">'link'</span>: [filename],</span><br><span class="line">                                                   <span class="string">'text'</span>: [info],</span><br><span class="line">                                                   <span class="string">'type'</span>: [<span class="string">'image'</span>]</span><br><span class="line">                                                   &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">            list_info.append(new_dict)</span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># 同一个日期</span></span><br><span class="line">            list_info[<span class="number">-1</span>][<span class="string">'arr'</span>][<span class="string">'link'</span>].append(filename)</span><br><span class="line">            list_info[<span class="number">-1</span>][<span class="string">'arr'</span>][<span class="string">'text'</span>].append(info)</span><br><span class="line">            list_info[<span class="number">-1</span>][<span class="string">'arr'</span>][<span class="string">'type'</span>].append(<span class="string">'image'</span>)</span><br><span class="line">    list_info.reverse()  <span class="comment"># 翻转</span></span><br><span class="line">    final_dict = &#123;<span class="string">"list"</span>: list_info&#125;</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"D:/blog/source/photos/data.json"</span>,<span class="string">"w"</span>) <span class="keyword">as</span> fp:</span><br><span class="line">        json.dump(final_dict, fp)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每次图片有改动都需要执行此脚本文件 </li>
+</ul>
+
+      
+	  
+      
+      
+      <div class="declare" hidden="hidden"></div>
+      
+	  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/2019-09-06-Hexo+Github实现相册功能/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-09-05-Hexo+Github搭建自己的博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -280,766 +435,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-my-fairy-tale4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/my-fairy-tale4/">失眠故事五【花匠与候鸟】</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/my-fairy-tale4/" class="archive-article-date">
-  	<time datetime="2017-06-04T19:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.1k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-29.jpg" alt="Picture by Matt Carlson"></p>
-<h3 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h3><p>每个春天，候鸟都会来到这片花田。<br>每个不是春天的季节，花匠总在认真地打理花田。花匠想让一切看起来未来可期，因为他喜欢这只候鸟。喜欢，是因为他们都爱花。那些关于花的话题，他们永远聊不完。</p>
-<p>有一个春天，候鸟跟花匠说起了她家乡的雪莲。<br>这种花，花匠从来没听说过。但每次说起雪莲，花匠都能注意到她眼中飞扬的光亮。是的，那是候鸟最心爱的花儿。</p>
-        
-          <a class="article-more-a" href="/2017/06/05/my-fairy-tale4/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">故事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/my-fairy-tale4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diary-2017-0521-0527" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/22/diary-2017-0521-0527/">江南见闻</a>
-    </h1>
-  
-
-        
-        <a href="/2017/05/22/diary-2017-0521-0527/" class="archive-article-date">
-  	<time datetime="2017-05-22T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-22</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-23.jpg" width="500"></p>
-
-<h3 id="扬起帆"><a href="#扬起帆" class="headerlink" title="扬起帆"></a>扬起帆</h3><p>这个4月真的特别丧…<br>开心的事情屈指可数，貌似也只有朴树的新专辑了。</p>
-<p>病后状态一直不好，工作时脑后阴风习习<br>bug，变成了巨大的飞蛾，每每衔着灵魂四方飘游。<br>周四晚，无耻地逃了一个会议<br>下班，拖着疲惫的身体，径直就飞往了杭州。</p>
-<p>都这么累了，问自己为什么又在路上了呢？<br>可能只是我觉得，旅行的时候不用去想以前和以后。<br>但旅行那么短，而生活那么长<br>那就更应该不停的出发吧？即使只是一场短暂的幻觉。</p>
-<p>我这么想着的时候，这场幻觉正变得越来越真实。<br>凌晨让头脑额外清醒，飞机下出现了新城<br>灯火穿透了夜色与云层，越来越浓，背后的飞蛾被引诱扑了下去——<br>烟消云散。</p>
-        
-          <a class="article-more-a" href="/2017/05/22/diary-2017-0521-0527/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/22/diary-2017-0521-0527/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diary-2017-0416-0422" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/22/diary-2017-0416-0422/">病中记 4.16-4.22</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/22/diary-2017-0416-0422/" class="archive-article-date">
-  	<time datetime="2017-04-22T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-22</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">675字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-22.jpg" alt="摄于清明" width="400"></p>
-
-<p>4月马上就要过去<br>似乎日历上，径直就能从3月翻到5月。<br>时间怎么这么快？</p>
-<p>长眠于4月之前的海子，对于时间，有一个生动的说法叫“打马而过”<br>有时觉得，这种匀速流淌不可变的东西，才是真TM的残忍。<br>长江水的结局，就是流到太平洋<br>没有任何意外能让它流到大西洋</p>
-<p>所以你说，有时意外的中断多可爱？<br>红绿灯多好呀，给你走走停停的机会<br>小病多好呀，静下来休息和幻想<br>悲伤多好呀，欢乐可放歌，悲伤可饮酒</p>
-<p>工作忙完了这阵子<br>那条安静而蜿蜒的时间之河，好像真的幻化成了打马的鞭子<br>梦中啪的一声惊响，病倒了。</p>
-        
-          <a class="article-more-a" href="/2017/04/22/diary-2017-0416-0422/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/22/diary-2017-0416-0422/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diary-2017-0305-0311" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/diary-2017-0305-0311/">我与《刺客信条》 3.5-3.11</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/12/diary-2017-0305-0311/" class="archive-article-date">
-  	<time datetime="2017-03-12T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-12</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">927字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-21.jpg" alt></p>
-<h4 id="一"><a href="#一" class="headerlink" title="一"></a>一</h4><p>这周感觉我的vscode已经“玩得贼6”<br>一切来之不易，毕竟是五次卸载sublime改掉的习惯。<br>不过这丝毫不影响我对sublime的喜爱<br>有人问为什么？<br>没法解释。大话西游里也曾说<br>喜欢一个编辑器需要理由吗？</p>
-<p>但有点令人沮丧的是，“喜欢”这件事确实是会变的。</p>
-<p>我有另外的感受，特别是在这周<br>迫不及待地把《刺客信条》电影看完的时候…<br>感觉特别的失望。<br>就是那种经行漫长的等候，期待一场肆无忌惮的雨<br>最后只听到了低沉雷声的空洞感。<br>但是，我也一曾很喜欢这个系列啊。</p>
-<p>可能，再也不会有一款游戏，能给我带来这样的触动了吧。<br>五年前，我还写过点文字<a href="//litten.me/2012/12/18/assassins-creed/">《记“刺客信条”三部曲：水月镜像，无心去来》</a>。</p>
-        
-          <a class="article-more-a" href="/2017/03/12/diary-2017-0305-0311/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游戏</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/12/diary-2017-0305-0311/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diary-2017-0212-0218" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/19/diary-2017-0212-0218/">决战前后 2.12 - 2.18</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/19/diary-2017-0212-0218/" class="archive-article-date">
-  	<time datetime="2017-02-19T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-19</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">525字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-20.jpg" alt width="450"></p>
-
-<p>终于是把T3评审的事情忙完<br>周末躺在床上整个人都不想动，空虚无比，宛如智障。<br>这种状态，只有高考结束时出现过<br>那时我的日记里写着：<br>“我站在太阳下，就是金灿灿的咸鱼；<br>我躺在被窝里，就是阴绵绵的豆腐脑…”<br>别说这是神比喻。</p>
-<p>因为这次评审，确实耗费了挺大的精力<br>关键还是在年后返工的第一周，你正吃着元宵唱着歌<br>突然跑出个班主任说：咱放完寒假就高考，好吗？<br>好生气哦，但还要保持微笑。<br>况且想想，年终奖好像还没发哎…</p>
-        
-          <a class="article-more-a" href="/2017/02/19/diary-2017-0212-0218/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/19/diary-2017-0212-0218/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-brave-new-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/10/brave-new-world/">美丽新世界</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/10/brave-new-world/" class="archive-article-date">
-  	<time datetime="2017-02-10T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-10</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=28949128&auto=0&height=66" style="margin-left: -10px;"></iframe>
-
-<p>痛仰有一首歌，叫《美丽新世界》，它其实是向80年前赫胥黎的同名小说致敬。<br>歌里唱道：<br><strong>“这是一个离奇的梦也是冒险者的乐园<br>不在乎你在不在乎新的世界依旧美丽…”</strong></p>
-<p>乌托邦如此美好，但在那里，幸福的人们全都是“被幸福的”。<br>你的在乎与否无关紧要，只需要按照秩序继续漫步。</p>
-<p>春节把<a href="https://movie.douban.com/subject/2338055/" target="_blank" rel="noopener">《西部世界》</a>看完，它的一些设定，也很容易看出致敬小说的意思，却又带来了另外的惊喜。<br>片尾Dolores的惊艳一枪尘埃落定，现在已经过去一段时间，花哨的剪辑褪出了印象，细微的东西反而更加深刻了。<br>还是想谈一谈这部作品。(含剧透…)</p>
-        
-          <a class="article-more-a" href="/2017/02/10/brave-new-world/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/10/brave-new-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diary-2017-0118-0125" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/26/diary-2017-0118-0125/">回乡偶书 1.18 - 1.25</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/26/diary-2017-0118-0125/" class="archive-article-date">
-  	<time datetime="2017-01-26T02:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-26</time>
-</a>
-		 <!-- 开始添加字数统计-->
-          
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">452字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/assets/blogImg/diary-19.jpg" alt width="450"></p>
-
-<p>年底恰逢乔迁，回去得比较早。<br>其实也算不上乔迁，爷爷的旧宅子，父辈兄弟合力，翻修重建<br>多了一个出逃城市，到乡村度假的地方。<br>当它以新面貌出现在眼前时<br>不免真的觉得衰败的新生相当感慨。</p>
-<p>特别是在年底，这个喜旧迎新的时节<br>好像很多往事，被年关一催，不断提纯<br>又沉淀出了最好的那部分。<br>然后你看着它，只能很简单又笃定的说一声：<br>好棒哦！</p>
-<p>但说起新居入伙，有件事我想起就想笑。<br>大概10岁时，第一次搬家，有个迷之仪式印象太深刻。<br>按着习俗，我左手要拿着一根葱，葱通聪，象征聪明伶俐<br>右手拿一根蒜，蒜通算，意思是会算术。<br>这活脱就是一羞耻的莹草cosplay啊</p>
-        
-          <a class="article-more-a" href="/2017/01/26/diary-2017-0118-0125/#more">more >></a>
-        
-      
-	  
-      
-      
-      <div class="declare" hidden="hidden"></div>
-      
-	  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">旧事</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/26/diary-2017-0118-0125/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -1170,118 +565,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">设计</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旅行</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">coffeescript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">css3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">旧事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">游戏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">黑科技</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">octopress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">主题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">产品</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">药别停</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">故事</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">性能</a>
               </li>
             
             <div class="clearfix"></div>
